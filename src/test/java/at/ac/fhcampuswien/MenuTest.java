@@ -1,13 +1,18 @@
 package at.ac.fhcampuswien;
 import org.junit.Test;
+
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MenuTest {
+    private PrintStream ps;
+
     @Test
     public void menu() {
         Menu menuTest = new Menu();
-        String actualText = menuTest.printedMenu();
+        String actualText = menuTest.printMenu(); //printMenu is package-private
         //menuTest.menu();
 
         String expectedText = "************************" + System.lineSeparator() +
@@ -20,4 +25,21 @@ public class MenuTest {
                 "q: Quit program" + System.lineSeparator();
 
         assertEquals(expectedText, actualText);
-    }}
+    }
+
+    @Test
+public void controller() {
+
+        //testen, ob user input erfolgt
+        ps.println("a");
+
+        //testen, ob Methode a, b, y aufgerufen wird
+
+        //testen, ob q funktioniert (exit)
+
+        String output = "Bye Bye!";
+        //assertEquals();
+
+
+    }
+}
