@@ -18,7 +18,6 @@ public class Article {
         return this.title;
     }
 
-
     //setters:
     public void setAuthor(String author) {
         this.author = author;
