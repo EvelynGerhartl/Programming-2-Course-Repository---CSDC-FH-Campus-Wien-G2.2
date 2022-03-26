@@ -4,13 +4,19 @@ import org.junit.Test;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+
+import java.util.List;
+
+import org.mockito.Mockito;
+import org.mockito.internal.verification.VerificationModeFactory;
 
 
 public class MenuTest {
-    private PrintStream ps;
 
+/*
     @Test
-    public void menu() {
+    public void menu() {                //mostly to test how testing works
         Menu menuTest = new Menu();
         String actualText = menuTest.printMenu(); //printMenu is package-private
         //menuTest.menu();
@@ -26,20 +32,6 @@ public class MenuTest {
 
         assertEquals(expectedText, actualText);
     }
+*/
 
-    @Test
-public void controller() {
-
-        //testen, ob user input erfolgt
-        ps.println("a");
-
-        //testen, ob Methode a, b, y aufgerufen wird
-
-        //testen, ob q funktioniert (exit)
-
-        String output = "Bye Bye!";
-        //assertEquals();
-
-
-    }
 }
