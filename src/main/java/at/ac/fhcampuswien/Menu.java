@@ -5,31 +5,29 @@ import java.util.Scanner;
 
 public class Menu {
 
-    //private static controller() // AppController Verknüpfung
-
+    private AppController ctrl = new AppController();
     private static final String INVALID_INPUT_MESSAGE = "Invalid input message. Please, try again!";
     private static final String EXIT_MESSAGE = "Bye Bye!";
 
-    public static void start() {
+    public void start() {
 
+        printMenu();
+        Scanner scanner = new Scanner(System.in);    //Scanner was originally in handleInput (see commented out).
+        String input = scanner.next();
+        handleInput(input);
     }
 
 
     private void handleInput(String input) {
-        Scanner scanner = new Scanner(System.in);
-        input = scanner.next();
 
         if (input.equals("a")) {
-            //getTopHeadlinesAustria(); //List<Article>
-            printMenu();
+            getTopHeadlinesAustria(ctrl);
 
         } else if (input.equals("b")) {
-            //getAllNewsBitcoin(); // List<Article>
-            printMenu();
+            getAllNewsBitcoin(ctrl);
 
         } else if (input.equals("y")) {
-            //getArticleCount(); // : int;
-            printMenu();
+            getArticleCount(ctrl);
 
         } else if (input.equals("q")) {
             printExitMessage();
@@ -39,13 +37,17 @@ public class Menu {
         }
     }
 
-    private static void getArticleCount(AppController ctrl){
+    private void getArticleCount(AppController ctrl){
+        // System.out.println("Number of articles: " + ctrl.getArticleCount());
+    }
 
+    private void getTopHeadlinesAustria(AppController ctrl) {
+      //  System.out.println(ctrl.getTopHeadlinesAustria());
 
-    } //(AppController ctrl)
-    private static void getTopHeadlinesAustria(AppController ctrl){} //(AppController ctrl)
-
-    private static void getAllNewsBitcoin(AppController ctrl){} //(AppController ctrl)
+    }
+    private void getAllNewsBitcoin(AppController ctrl){
+        //System.out.println(ctrl.getAllNewsBitcoin());
+    }
 
     private static void printExitMessage(){
         System.out.println(EXIT_MESSAGE);
