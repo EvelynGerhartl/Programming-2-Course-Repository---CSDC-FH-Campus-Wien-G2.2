@@ -38,11 +38,11 @@ public class Menu {
     }
 
     private void getArticleCount(AppController ctrl){
-        // System.out.println("Number of articles: " + ctrl.getArticleCount());
+        System.out.println("Number of articles: " + ctrl.getArticleCount());
     }
 
     private void getTopHeadlinesAustria(AppController ctrl) {
-      //  System.out.println(ctrl.getTopHeadlinesAustria());
+        System.out.println(ctrl.getTopHeadlinesAustria());
 
     }
     private void getAllNewsBitcoin(AppController ctrl){

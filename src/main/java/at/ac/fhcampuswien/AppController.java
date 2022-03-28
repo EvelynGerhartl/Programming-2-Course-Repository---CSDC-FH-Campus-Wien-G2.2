@@ -6,7 +6,10 @@ public class AppController {
     private List<Article> articles;
 
 
-    public AppController() { //constructor
+    public AppController() {//constructor
+
+        setArticles(generateMockList());
+
     }
 
     public int getArticleCount() {
@@ -15,6 +18,15 @@ public class AppController {
 
     public void setArticles(List<Article>articles){
         this.articles = articles;
+    }
+
+    public List<Article> getTopHeadlinesAustria() {
+        if (articles.isEmpty()) {
+            List<Article> empty = new ArrayList<>();
+            return empty;
+        } else {
+            return articles;
+        }
     }
 
     public static List<Article> generateMockList() { //private not public modifier
