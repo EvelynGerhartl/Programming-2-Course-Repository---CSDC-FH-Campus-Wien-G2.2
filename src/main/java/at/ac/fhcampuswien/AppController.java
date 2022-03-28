@@ -7,10 +7,17 @@ public class AppController {
 
 
     public AppController() { //constructor
-
     }
 
-    private static List<Article> generateMockList() {
+    public int getArticleCount() {
+        return articles.size();
+    }
+
+    public void setArticles(List<Article>articles){
+        this.articles = articles;
+    }
+
+    public static List<Article> generateMockList() { //private not public modifier
 
 
         List<Article> articles = new ArrayList<>();
