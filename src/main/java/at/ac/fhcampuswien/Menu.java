@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 
-
 public class Menu {
 
     private AppController ctrl = new AppController();
@@ -30,14 +29,13 @@ public class Menu {
     public Text bigText;
 
 
-
     public void start() {
-       // printMenu();
-       // Scanner scanner = new Scanner(System.in);
+        // printMenu();
+        // Scanner scanner = new Scanner(System.in);
         // String input = scanner.next();
-       // handleInput(input);
+        // handleInput(input);
 
-}
+    }
 
 
     @FXML
@@ -49,7 +47,7 @@ public class Menu {
     }
 
 
-     private void handleInput(String input) {
+    private void handleInput(String input) {
 
         if (input.equals("a")) {
             clickedA();
@@ -107,7 +105,6 @@ public class Menu {
     }
 
 
-
     public void clickedA() {
         getTopHeadlinesAustria(ctrl);
     }
@@ -127,19 +124,21 @@ public class Menu {
     }
 
 
-
     public void onHover1() {
         text1.setFill(Color.web("#007178"));
         opt1.setOpacity(0.5);
     }
+
     public void onHover2() {
         text2.setFill(Color.web("#007178"));
         opt2.setOpacity(0.5);
     }
+
     public void onHover3() {
         text3.setFill(Color.web("#007178"));
         opt3.setOpacity(0.5);
     }
+
     public void onHover4() {
         text4.setFill(Color.web("#007178"));
         opt4.setOpacity(0.5);

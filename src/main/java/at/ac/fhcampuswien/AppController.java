@@ -42,8 +42,6 @@ public class AppController {
     }
 
 
-
-
     private static List<Article> generateMockList() {
 
 
@@ -62,11 +60,10 @@ public class AppController {
         return articles;
 
     }
+
     public List<Article> getMockList() { //to use private defined generateMockList in AppControllerTest for testing proposes
         return generateMockList();
     }
-
-
 
 
 }

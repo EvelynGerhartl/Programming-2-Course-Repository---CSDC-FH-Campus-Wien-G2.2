@@ -14,9 +14,9 @@ import java.io.File;
 import java.net.URL;
 
 public class App extends Application {
-@FXML
+    @FXML
     public static void main(String[] args) {
-       launch(args);
+        launch(args);
 
 
     }
