@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import static at.ac.fhcampuswien.AppController.generateMockList;
@@ -16,7 +17,8 @@ public class AppControllerTest {
     private AppController mockCtrl = new AppController();
     private List<Article> mockList = generateMockList();
 
-    private final Article art1 = new Article("Mock Author", "Mock Title"); //used in setArticles and getArticleCount2
+    private final Article art1 = new Article("Sravya Attaluri", "The activist of colour who is shaking up mental health and feminism through art."); //used in setArticles and getArticleCount2
+
 
     /**https://www.baeldung.com/java-testing-system-out-println */
     private final PrintStream standardOut = System.out;
@@ -94,5 +96,19 @@ public class AppControllerTest {
         System.out.print(mockList);
         assertEquals(Collections.emptyList().toString(), outputStreamCaptor.toString());
     }
+
+
+    @Test
+    public void filterList() {
+        List<Article> filteredArticles = new ArrayList<>();
+        filteredArticles.add(art1);
+        System.out.print(filteredArticles);
+
+
+        assertEquals(outputStreamCaptor.toString(), mockCtrl.filterList("feminism",mockList).toString() );
+
+
+    }
+
 
 }

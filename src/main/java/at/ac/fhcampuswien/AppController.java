@@ -29,6 +29,12 @@ public class AppController {
         }
     }
 
+    public List<Article> filterList(String query, List<Article> articles) {
+        articles.removeIf(a -> !a.getTitle().contains(query));
+
+        return articles;
+    }
+
     public static List<Article> generateMockList() { //private not public modifier
 
 
