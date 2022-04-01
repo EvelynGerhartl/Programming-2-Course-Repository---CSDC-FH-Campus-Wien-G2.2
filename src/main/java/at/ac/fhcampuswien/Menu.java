@@ -1,6 +1,5 @@
 package at.ac.fhcampuswien;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -22,22 +21,26 @@ public class Menu {
 
         if (input.equals("a")) {
             getTopHeadlinesAustria(ctrl);
+            start();
 
         } else if (input.equals("b")) {
             getAllNewsBitcoin(ctrl);
+            start();
 
         } else if (input.equals("y")) {
             getArticleCount(ctrl);
+            start();
 
         } else if (input.equals("q")) {
             printExitMessage();
 
         } else {
             printInvalidInputMessage();
+            start();
         }
     }
 
-    private void getArticleCount(AppController ctrl){
+    private void getArticleCount(AppController ctrl) {
         System.out.println("Number of articles: " + ctrl.getArticleCount());
     }
 
@@ -45,11 +48,12 @@ public class Menu {
         System.out.println(ctrl.getTopHeadlinesAustria());
 
     }
-    private void getAllNewsBitcoin(AppController ctrl){
-        //System.out.println(ctrl.getAllNewsBitcoin());
+
+    private void getAllNewsBitcoin(AppController ctrl) {
+        System.out.println(ctrl.getAllNewsBitcoin());
     }
 
-    private static void printExitMessage(){
+    private static void printExitMessage() {
         System.out.println(EXIT_MESSAGE);
     }
 

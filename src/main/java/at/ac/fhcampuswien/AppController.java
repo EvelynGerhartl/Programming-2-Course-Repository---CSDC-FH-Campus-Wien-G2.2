@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien;
-import  java.util.*;
+
+import java.util.*;
 
 public class AppController {
 
@@ -16,7 +17,7 @@ public class AppController {
         return articles.size();
     }
 
-    public void setArticles(List<Article>articles){
+    public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
 
@@ -34,6 +35,12 @@ public class AppController {
 
         return articles;
     }
+
+    public List<Article> getAllNewsBitcoin() {
+        List<Article> containingBitcoin = filterList("Bitcoin", articles);
+        return containingBitcoin;
+    }
+
 
     public static List<Article> generateMockList() { //private not public modifier
 
