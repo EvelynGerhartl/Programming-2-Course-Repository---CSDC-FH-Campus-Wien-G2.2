@@ -20,17 +20,17 @@
          </image></ImageView>
       <ImageView fx:id="opt2" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="157.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button2.png" />
+            <Image url="@button2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="opt3" fitHeight="46.0" fitWidth="300.0" layoutX="182.0" layoutY="191.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button3.png" />
+            <Image url="@button3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="opt4" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="191.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button4.png" />
+            <Image url="@button4.png" />
          </image>
       </ImageView>
       <Text fx:id="text1" fill="WHITE" layoutX="188.0" layoutY="178.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Get the top headlines for Austria" textAlignment="CENTER" wrappingWidth="300.0">
