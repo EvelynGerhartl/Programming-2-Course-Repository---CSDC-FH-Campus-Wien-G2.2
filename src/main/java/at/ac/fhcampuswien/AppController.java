@@ -2,24 +2,24 @@ package at.ac.fhcampuswien;
 
 import java.util.*;
 
+
 public class AppController {
 
     private List<Article> articles;
 
 
     public AppController() {//constructor
-
         setArticles(generateMockList());
+    }
 
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     public int getArticleCount() {
         return articles.size();
     }
 
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
 
     public List<Article> getTopHeadlinesAustria() {
         setArticles(generateMockList()); // Resets Number of Articles after Search "Bitcoin"
@@ -31,9 +31,8 @@ public class AppController {
         }
     }
 
-    public List<Article> filterList(String query, List<Article> articles) {
+    protected List<Article> filterList(String query, List<Article> articles) {
         articles.removeIf(a -> !a.getTitle().toLowerCase().contains(query.toLowerCase())); // Removes all Articles that don't contain query in the title, not case-sensitive
-
         return articles;
     }
 
@@ -43,7 +42,9 @@ public class AppController {
     }
 
 
-    public static List<Article> generateMockList() { //private not public modifier
+
+
+    private static List<Article> generateMockList() {
 
 
         List<Article> articles = new ArrayList<>();
@@ -61,6 +62,11 @@ public class AppController {
         return articles;
 
     }
+    public List<Article> getMockList() { //to use private defined generateMockList in AppControllerTest for testing proposes
+        return generateMockList();
+    }
+
+
 
 
 }

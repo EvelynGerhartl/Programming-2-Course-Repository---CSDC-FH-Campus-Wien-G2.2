@@ -9,16 +9,14 @@ public class Menu {
     private static final String EXIT_MESSAGE = "Bye Bye!";
 
     public void start() {
-
         printMenu();
-        Scanner scanner = new Scanner(System.in);    //Scanner was originally in handleInput (see commented out).
+        Scanner scanner = new Scanner(System.in);
         String input = scanner.next();
         handleInput(input);
     }
 
 
     private void handleInput(String input) {
-
         if (input.equals("a")) {
             getTopHeadlinesAustria(ctrl);
             start();
