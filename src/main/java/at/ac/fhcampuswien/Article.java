@@ -20,7 +20,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Title:" + this.title + " Author:" + this.author;
+        return "Title: " + this.title + " Author: " + this.author;
     }
 
 }

@@ -1,12 +1,56 @@
 package at.ac.fhcampuswien;
 
-public class App {
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+
+import java.io.File;
+import java.net.URL;
+
+public class App extends Application {
+@FXML
     public static void main(String[] args) {
-       Menu menu = new Menu();
-       menu.start();
+       launch(args);
+
+
+
 
 
 
     }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        URL url = new File("src/main/resources/graphicalInterface.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        stage.setTitle("_the news app_");
+        stage.getIcons().add(new Image("file:src/main/resources/icon.png"));
+        Scene scene = new Scene(root, 1000, 625);
+        stage.setScene(scene);
+        scene.setFill(Color.web("#db4840"));
+        stage.setResizable(false);
+        Menu menu = new Menu();
+        menu.start();
+
+
+
+
+
+
+        stage.show();
+
+
+
+
+    }
 }

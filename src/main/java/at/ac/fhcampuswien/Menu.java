@@ -1,6 +1,14 @@
 package at.ac.fhcampuswien;
 
-import java.util.Scanner;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 
 public class Menu {
 
@@ -8,51 +16,82 @@ public class Menu {
     private static final String INVALID_INPUT_MESSAGE = "Invalid input message. Please, try again!";
     private static final String EXIT_MESSAGE = "Bye Bye!";
 
+    @FXML
+    public Text text1;
+    public Text text2;
+    public Text text3;
+    public Text text4;
+    public ImageView opt1;
+    public ImageView opt2;
+    public ImageView opt3;
+    public ImageView opt4;
+
+    public TextArea textArea = new TextArea();
+    public Text bigText;
+
+
+
     public void start() {
-        printMenu();
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.next();
-        handleInput(input);
+        //textArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
+           // @Override
+           // public void handle(KeyEvent keyEvent) {
+          //      String input = textArea.getText();
+          //  }
+
+      //  });
+      //  handleInput(textArea.getOnKeyTyped(),toString());
+
+}
+
+
+    @FXML
+   public void onEnter(KeyEvent keyEvent) {
+              String input = textArea.getText();
+       handleInput(input);
+
     }
 
 
-    private void handleInput(String input) {
+     private void handleInput(String input) {
+
         if (input.equals("a")) {
-            getTopHeadlinesAustria(ctrl);
-            start();
+            clickedA();
 
         } else if (input.equals("b")) {
-            getAllNewsBitcoin(ctrl);
-            start();
+            clickedB();
 
         } else if (input.equals("y")) {
-            getArticleCount(ctrl);
-            start();
+            clickedY();
+
 
         } else if (input.equals("q")) {
             printExitMessage();
 
+
         } else {
             printInvalidInputMessage();
-            start();
+            System.out.println("why?");
+            System.out.println(input);
         }
     }
 
     private void getArticleCount(AppController ctrl) {
-        System.out.println("Number of articles: " + ctrl.getArticleCount());
+        textArea.setText("Number of articles: " + ctrl.getArticleCount());
     }
 
     private void getTopHeadlinesAustria(AppController ctrl) {
-        System.out.println(ctrl.getTopHeadlinesAustria());
+        textArea.setText(ctrl.getTopHeadlinesAustria().toString());
 
     }
 
     private void getAllNewsBitcoin(AppController ctrl) {
-        System.out.println(ctrl.getAllNewsBitcoin());
+        textArea.setText(ctrl.getAllNewsBitcoin().toString());
     }
 
     private static void printExitMessage() {
         System.out.println(EXIT_MESSAGE);
+        Platform.exit();
+
     }
 
     private static void printInvalidInputMessage() {
@@ -61,13 +100,69 @@ public class Menu {
 
 
     private static void printMenu() {
+
         System.out.println("************************");
         System.out.println("*Welcome to NewsApp*");
-        System.out.println("Enter what you want to do: ");
+        System.out.println("Choose what you want to to from the menu or enter: ");
         System.out.println("a: Get the top headlines for Austria");
         System.out.println("b: Get all the news about Bitcoin");
         System.out.println("y: Count articles");
         System.out.println("q: Quit program");
+
     }
+
+
+
+    public void clickedA() {
+        getTopHeadlinesAustria(ctrl);
+    }
+
+    public void clickedB() {
+        getAllNewsBitcoin(ctrl);
+    }
+
+    public void clickedY() {
+        getArticleCount(ctrl);
+    }
+
+    public void clickedQ() {
+        printExitMessage();
+        bigText.setVisible(true);
+        Platform.exit();
+    }
+
+
+
+    public void onHover1() {
+        text1.setFill(Color.web("#007178"));
+        opt1.setOpacity(0.5);
+    }
+    public void onHover2() {
+        text2.setFill(Color.web("#007178"));
+        opt2.setOpacity(0.5);
+    }
+    public void onHover3() {
+        text3.setFill(Color.web("#007178"));
+        opt3.setOpacity(0.5);
+    }
+    public void onHover4() {
+        text4.setFill(Color.web("#007178"));
+        opt4.setOpacity(0.5);
+    }
+
+    public void onExited() {
+        opt1.setOpacity(1);
+        opt2.setOpacity(1);
+        opt3.setOpacity(1);
+        opt4.setOpacity(1);
+        text1.setFill(Color.WHITE);
+        text2.setFill(Color.WHITE);
+        text3.setFill(Color.WHITE);
+        text4.setFill(Color.WHITE);
+
+
+    }
+
+
 }
 

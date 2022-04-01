@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: db4840;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.Menu">
+    <children>
+        <ImageView fitHeight="625.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background.png" />
+         </image></ImageView>
+        <ImageView fx:id="opt1" fitHeight="46.0" fitWidth="300.0" layoutX="182.0" layoutY="157.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@rosa.png" />
+         </image></ImageView>
+      <ImageView fx:id="opt2" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="157.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="opt3" fitHeight="46.0" fitWidth="300.0" layoutX="182.0" layoutY="191.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="opt4" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="191.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button4.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="text1" fill="WHITE" layoutX="188.0" layoutY="178.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Get the top headlines for Austria" textAlignment="CENTER" wrappingWidth="300.0">
+         <font>
+            <Font name="SansSerif Regular" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="text4" fill="WHITE" layoutX="611.0" layoutY="211.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Quit program" textAlignment="CENTER" wrappingWidth="110.22225952148438">
+         <font>
+            <Font name="SansSerif Regular" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="text2" fill="WHITE" layoutX="526.0" layoutY="178.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Get all the news about Bitcoin" textAlignment="CENTER" wrappingWidth="280.00006103515625">
+         <font>
+            <Font name="SansSerif Regular" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="welcomeText" layoutX="160.0" layoutY="133.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO NEWS APP! Choose what you want to do:" wrappingWidth="677.3367767333984">
+         <font>
+            <Font name="SansSerif Regular" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="text3" fill="WHITE" layoutX="192.0" layoutY="211.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Count articles" textAlignment="CENTER" wrappingWidth="280.00006103515625">
+         <font>
+            <Font name="SansSerif Regular" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="TextBox" layoutX="168.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="618.4" />
+      <Text fx:id="bigText" fill="WHITE" layoutX="248.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bye, bye!" textAlignment="CENTER" visible="false" wrappingWidth="464.5367431640625">
+         <font>
+            <Font name="SansSerif Regular" size="72.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="textArea" layoutX="179.0" layoutY="224.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onEnter" prefHeight="305.0" prefWidth="639.0" style="-fx-font-size: 18; -fx-background-color: ffffff;" wrapText="true">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextArea>
+    </children>
+</AnchorPane>
