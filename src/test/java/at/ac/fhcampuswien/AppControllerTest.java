@@ -128,7 +128,17 @@ public class AppControllerTest {
 
 
     }
+    @Test
+    public void filterList2() {
+        List<Article> filteredArticles = new ArrayList<>();
+        filteredArticles.add(art1);
+        System.out.print(filteredArticles);
 
+
+        assertEquals(outputStreamCaptor.toString(), mockCtrl.filterList("FEMINISM",mockList).toString() );
+
+
+    }
 
     @Test
     public void getAllNewsBitcoin() {

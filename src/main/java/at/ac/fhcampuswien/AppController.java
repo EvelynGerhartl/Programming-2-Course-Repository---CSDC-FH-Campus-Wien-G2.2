@@ -22,6 +22,7 @@ public class AppController {
     }
 
     public List<Article> getTopHeadlinesAustria() {
+        setArticles(generateMockList()); // Resets Number of Articles after Search "Bitcoin"
         if (articles.isEmpty()) {
             List<Article> empty = new ArrayList<>();
             return empty;
@@ -31,7 +32,7 @@ public class AppController {
     }
 
     public List<Article> filterList(String query, List<Article> articles) {
-        articles.removeIf(a -> !a.getTitle().contains(query));
+        articles.removeIf(a -> !a.getTitle().toLowerCase().contains(query.toLowerCase())); // Removes all Articles that don't contain query in the title, not case-sensitive
 
         return articles;
     }
