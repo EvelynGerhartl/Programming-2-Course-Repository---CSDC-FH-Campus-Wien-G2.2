@@ -74,6 +74,10 @@
             <Insets />
          </opaqueInsets>
       </TextArea>
-      <Text layoutX="208.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose from the menu above or type here a, b, y or q: " />
+      <Text layoutX="182.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose from the menu above or type here a, b, y or q: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

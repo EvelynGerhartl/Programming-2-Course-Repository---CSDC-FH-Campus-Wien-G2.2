@@ -44,7 +44,7 @@ public class Menu {
    public void onEnter() {
               String input = textAreaInput.getText();
               handleInput(input);
-              input =" ";
+              textAreaInput.clear();
 
     }
 
