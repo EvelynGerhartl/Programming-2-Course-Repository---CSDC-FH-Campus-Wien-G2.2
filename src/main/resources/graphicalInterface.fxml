@@ -16,34 +16,34 @@
          </image></ImageView>
         <ImageView fx:id="opt1" fitHeight="46.0" fitWidth="300.0" layoutX="182.0" layoutY="157.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@rosa.png" />
+            <Image url="@button3.png" />
          </image></ImageView>
       <ImageView fx:id="opt2" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="157.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button2.png" />
+            <Image url="@button3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="opt3" fitHeight="46.0" fitWidth="300.0" layoutX="182.0" layoutY="191.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button3.png" />
+            <Image url="@button3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="opt4" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="191.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../tryingSomeJavaFx/src/main/resources/button4.png" />
+            <Image url="@button3.png" />
          </image>
       </ImageView>
-      <Text fx:id="text1" fill="WHITE" layoutX="188.0" layoutY="178.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Get the top headlines for Austria" textAlignment="CENTER" wrappingWidth="300.0">
+      <Text fx:id="text1" fill="WHITE" layoutX="179.0" layoutY="178.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="(a) Get the top headlines for Austria" textAlignment="CENTER" wrappingWidth="300.0">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="text4" fill="WHITE" layoutX="611.0" layoutY="211.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Quit program" textAlignment="CENTER" wrappingWidth="110.22225952148438">
+      <Text fx:id="text4" fill="WHITE" layoutX="576.0" layoutY="211.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="(q) Quit program" textAlignment="CENTER" wrappingWidth="149.42227172851562">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="text2" fill="WHITE" layoutX="526.0" layoutY="178.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Get all the news about Bitcoin" textAlignment="CENTER" wrappingWidth="280.00006103515625">
+      <Text fx:id="text2" fill="WHITE" layoutX="526.0" layoutY="178.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="(b) Get all the news about Bitcoin" textAlignment="CENTER" wrappingWidth="280.00006103515625">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
@@ -53,7 +53,7 @@
             <Font name="SansSerif Regular" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="text3" fill="WHITE" layoutX="192.0" layoutY="211.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Count articles" textAlignment="CENTER" wrappingWidth="280.00006103515625">
+      <Text fx:id="text3" fill="WHITE" layoutX="192.0" layoutY="211.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="(y) Count articles" textAlignment="CENTER" wrappingWidth="280.00006103515625">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
@@ -64,10 +64,16 @@
             <Font name="SansSerif Regular" size="72.0" />
          </font>
       </Text>
-      <TextArea fx:id="textArea" layoutX="179.0" layoutY="224.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onEnter" prefHeight="305.0" prefWidth="639.0" style="-fx-font-size: 18; -fx-background-color: ffffff;" wrapText="true">
+      <TextArea fx:id="textAreaInput" layoutX="536.0" layoutY="490.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onEnter" prefHeight="42.0" prefWidth="280.0" promptText="Type a, b, y or q here." style="-fx-font-size: 18; -fx-background-color: ffffff;" wrapText="true">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </TextArea>
+      <TextArea fx:id="textArea" editable="false" layoutX="182.0" layoutY="227.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="246.0" prefWidth="633.0" style="-fx-font-size: 18; -fx-background-color: ffffff;" wrapText="true">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextArea>
+      <Text layoutX="208.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose from the menu above or type here a, b, y or q: " />
     </children>
 </AnchorPane>
