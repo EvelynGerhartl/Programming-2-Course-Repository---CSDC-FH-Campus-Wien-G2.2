@@ -1,11 +1,9 @@
 package at.ac.fhcampuswien;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -27,6 +25,7 @@ public class Menu {
     public ImageView opt4;
 
     public TextArea textArea = new TextArea();
+    public TextArea textAreaInput;
     public Text bigText;
 
 
@@ -45,9 +44,10 @@ public class Menu {
 
 
     @FXML
-   public void onEnter(KeyEvent keyEvent) {
-              String input = textArea.getText();
-       handleInput(input);
+   public void onEnter() {
+              String input = textAreaInput.getText();
+              handleInput(input);
+              input =" ";
 
     }
 
@@ -70,8 +70,6 @@ public class Menu {
 
         } else {
             printInvalidInputMessage();
-            System.out.println("why?");
-            System.out.println(input);
         }
     }
 
