@@ -1,15 +1,11 @@
 package at.ac.fhcampuswien;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -35,12 +31,9 @@ public class App extends Application {
         stage.setScene(scene);
         scene.setFill(Color.web("#db4840"));
         stage.setResizable(false);
+
         Menu menu = new Menu();
         menu.start();
-
-
-
-
 
 
         stage.show();
