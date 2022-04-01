@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 
+
 public class Menu {
 
     private AppController ctrl = new AppController();
@@ -31,14 +32,10 @@ public class Menu {
 
 
     public void start() {
-        //textArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
-           // @Override
-           // public void handle(KeyEvent keyEvent) {
-          //      String input = textArea.getText();
-          //  }
-
-      //  });
-      //  handleInput(textArea.getOnKeyTyped(),toString());
+       // printMenu();
+       // Scanner scanner = new Scanner(System.in);
+        // String input = scanner.next();
+       // handleInput(input);
 
 }
 
