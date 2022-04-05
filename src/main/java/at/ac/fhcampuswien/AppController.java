@@ -17,15 +17,18 @@ public class AppController {
     }
 
     public int getArticleCount() {
-        return articles.size();
+        if (articles == null) {
+            return 0;
+        } else {
+            return articles.size();
+        }
     }
 
 
     public List<Article> getTopHeadlinesAustria() {
-        setArticles(generateMockList()); // Resets Number of Articles after Search "Bitcoin"
-        if (articles.isEmpty()) {
-            List<Article> empty = new ArrayList<>();
-            return empty;
+        //setArticles(generateMockList()); // Resets Number of Articles after Search "Bitcoin"
+        if (articles == null) {
+            return new ArrayList<>();
         } else {
             return articles;
         }

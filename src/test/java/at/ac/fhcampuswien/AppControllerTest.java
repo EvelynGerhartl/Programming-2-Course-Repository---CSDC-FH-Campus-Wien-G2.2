@@ -18,9 +18,6 @@ public class AppControllerTest {
 
     private AppController mockCtrl = new AppController();
     private List<Article> mockList = mockCtrl.getMockList();
-    private List<Article> containingBitcoin = new ArrayList<>();
-    Article art2 = new Article("Valentina Rossi", "El Salvador Bitcoin city planned at base of Conchagua volcano.");
-    Article art3 = new Article("Sofia Vanoli", "Bitcoin less green since China ban, research suggests.");
 
     private final Article art1 = new Article("Sravya Attaluri", "The activist of colour who is shaking up mental health and feminism through art."); //used in setArticles and getArticleCount2
 
@@ -81,60 +78,54 @@ public class AppControllerTest {
     public void setArticles() {
         List<Article> art = mockList;
         mockCtrl.setArticles( mockCtrl.getMockList());
-        assertEquals(art.toString(),  mockCtrl.getMockList().toString());
+        assertEquals(art,  mockCtrl.getMockList());
     }
 
 
     @Test
     @DisplayName("getTopHeadlinesAustria")
     public void getTopHeadlinesAustria2() {
-        System.out.print(mockCtrl.getTopHeadlinesAustria());
         String output = mockList.toString();
 
-        assertEquals(output, outputStreamCaptor.toString());
+        assertEquals(output, mockCtrl.getTopHeadlinesAustria().toString());
     }
 
     @Test
     @DisplayName("getTopHeadlinesAustria when empty")
-    public void getTopHeadlinesAustria3() {
-        mockList.clear();            // emptying list to see if it returns an empty list
-        System.out.print(mockList);
-        assertEquals(Collections.emptyList().toString(), outputStreamCaptor.toString());
+    public void getTopHeadlinesAustria3() { // emptying list to see if it returns an empty list
+       mockCtrl.setArticles(null);
+
+        assertEquals(Collections.emptyList(), mockCtrl.getTopHeadlinesAustria());
     }
 
 
     @Test
     @DisplayName("filterList")
-    public void filterList() {
+    public void filterList() {                                  //updated
         List<Article> filteredArticles = new ArrayList<>();
         filteredArticles.add(art1);
-        System.out.print(filteredArticles);
 
-
-        assertEquals(outputStreamCaptor.toString(), mockCtrl.filterList("feminism", mockList).toString());
+        assertEquals(filteredArticles, mockCtrl.filterList("feminism",mockList));
 
 
     }
     @Test
     @DisplayName("filterList with case-sensitive test")
-    public void filterList2() {
+    public void filterList2() {                                 //updated
         List<Article> filteredArticles = new ArrayList<>();
         filteredArticles.add(art1);
-        System.out.print(filteredArticles);
 
-
-        assertEquals(outputStreamCaptor.toString(), mockCtrl.filterList("FEMINISM",mockList).toString() );
-
-
+        assertEquals(filteredArticles, mockCtrl.filterList("FEMINISM",mockList));
     }
 
     @Test
-    @DisplayName("getAllNewsBitcoin filters for Bitcoin")
+    @DisplayName("getAllNewsBitcoin filters for Bitcoin")       //updated
     public void getAllNewsBitcoin() {
-        System.out.print(mockCtrl.getAllNewsBitcoin());
-        containingBitcoin.add(art2);
-        containingBitcoin.add(art3);
-        assertEquals(containingBitcoin.toString(), outputStreamCaptor.toString());
+        List<Article> containingBitcoin = new ArrayList<>();
+        containingBitcoin.add(new Article("Valentina Rossi", "El Salvador Bitcoin city planned at base of Conchagua volcano."));
+        containingBitcoin.add(new Article("Sofia Vanoli", "Bitcoin less green since China ban, research suggests."));
+
+        assertEquals(containingBitcoin, mockCtrl.getAllNewsBitcoin());
     }
 
 }
