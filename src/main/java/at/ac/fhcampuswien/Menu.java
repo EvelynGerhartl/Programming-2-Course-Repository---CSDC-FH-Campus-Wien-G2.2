@@ -26,27 +26,8 @@ public class Menu {
     public ImageView opt4;
 
     public TextArea textArea = new TextArea();
-    public TextArea textAreaInput;
     public Text bigText;
 
-
-
-    public void start() {
-       // printMenu();
-       // Scanner scanner = new Scanner(System.in);
-        // String input = scanner.next();
-       // handleInput(input);
-
-}
-
-
-    @FXML
-   public void onEnter() {
-              String input = textAreaInput.getText();
-              handleInput(input);
-              textAreaInput.clear();
-
-    }
 
 
      private void handleInput(String input) {
@@ -93,18 +74,6 @@ public class Menu {
         System.out.println(INVALID_INPUT_MESSAGE);
     }
 
-
-    private static void printMenu() {
-
-        System.out.println("************************");
-        System.out.println("*Welcome to NewsApp*");
-        System.out.println("Choose what you want to to from the menu or enter: ");
-        System.out.println("a: Get the top headlines for Austria");
-        System.out.println("b: Get all the news about Bitcoin");
-        System.out.println("y: Count articles");
-        System.out.println("q: Quit program");
-
-    }
 
 
 

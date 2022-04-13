@@ -33,7 +33,7 @@ public class App extends Application {
         stage.setResizable(false);
 
         Menu menu = new Menu();
-        menu.start();
+
 
 
         stage.show();
