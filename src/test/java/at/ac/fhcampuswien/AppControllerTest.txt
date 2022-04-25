@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppControllerTest {
 
+
     private AppController mockCtrl = new AppController();
     private List<Article> mockList = mockCtrl.getMockList();
 
