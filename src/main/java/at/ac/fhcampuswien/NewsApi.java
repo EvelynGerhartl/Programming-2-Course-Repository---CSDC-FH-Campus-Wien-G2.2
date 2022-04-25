@@ -59,8 +59,11 @@ public class NewsApi {
                     System.lineSeparator() + "Read more: " + news.getArticles().get(i).getUrl());             //url?
         }
 
-
     }
+
+
+
+
     public void bitcoinHeadlines(){
         String json = null;
         try {
