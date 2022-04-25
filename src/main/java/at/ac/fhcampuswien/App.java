@@ -35,7 +35,7 @@ public class App extends Application {
         scene.setFill(Color.web("#db4840"));
         stage.setResizable(false);
 
-        Menu menu = new Menu();
+
 
 
         NewsApi newsapi = new NewsApi();
@@ -47,10 +47,9 @@ public class App extends Application {
 
         NewsApi newsapi2 = new NewsApi();
         System.out.println("bitcoin: ");
-        newsapi2.bitcoinHeadlines();
+        System.out.println(newsapi2.bitcoinHeadlines());
         System.out.println("");
         System.out.println("Number of articles: " + newsapi2.totalResults2());
-
 
 
 

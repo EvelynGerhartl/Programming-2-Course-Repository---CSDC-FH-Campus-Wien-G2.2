@@ -3,16 +3,21 @@ package at.ac.fhcampuswien;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import javax.swing.*;
+import java.io.PrintStream;
 
 
 public class Menu {
 
+    public ImageView newsImage;
     private AppController ctrl = new AppController();
+    private NewsApi newsApi = new NewsApi();
     private static final String INVALID_INPUT_MESSAGE = "Invalid input message. Please, try again!";
     private static final String EXIT_MESSAGE = "Bye Bye!";
 
@@ -29,36 +34,13 @@ public class Menu {
     public TextArea textArea = new TextArea();
     public Text bigText;
 
-
-
-    /* private void handleInput(String input) {
-
-        if (input.equals("a")) {
-            clickedA();
-
-        } else if (input.equals("b")) {
-            clickedB();
-
-        } else if (input.equals("y")) {
-            clickedY();
-
-
-        } else if (input.equals("q")) {
-            printExitMessage();
-
-
-        } else {
-            printInvalidInputMessage();
-        }
-    } */
-
     private void getArticleCount(AppController ctrl) {
         textArea.setText("Number of articles: " + ctrl.getArticleCount());
     }
 
     private void getTopHeadlinesAustria(AppController ctrl) {
+        textArea.setText(newsApi.topHeadlinesOnly());
        ctrl.getTopHeadlinesAustria();
-         //Text Area???
 
     }
 
@@ -129,5 +111,18 @@ public class Menu {
 
     }
 
+    public void urlToImage(String imageUrl) {
+        newsImage = new ImageView(imageUrl);
+
+    }
+
+
+/*
+    public static void outputStream() {
+        PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
+        System.setOut(printStream);
+    }
+
+ */
 }
 

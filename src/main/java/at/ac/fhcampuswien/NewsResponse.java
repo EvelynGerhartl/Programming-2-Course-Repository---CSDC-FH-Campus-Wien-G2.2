@@ -8,6 +8,10 @@ public class NewsResponse {
     private int totalResults;
     private List<Article> articles;
 
+    public NewsResponse() {
+
+    }
+
     public NewsResponse(String status, int totalResults, List<Article> articles) {
         this.status = status;
         this.totalResults = totalResults;

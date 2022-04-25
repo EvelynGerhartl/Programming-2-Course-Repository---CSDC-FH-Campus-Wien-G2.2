@@ -87,11 +87,12 @@ public class Article {
    public String toString() {
         return "Title: " + getTitle() + System.lineSeparator() +
                 "Author: " + this.author + System.lineSeparator() +
-                "Description: " + this.description + System.lineSeparator() +
-                "Url: " + this.url + System.lineSeparator() +
-               // "UrlToImage: " + this.urlToImage + System.lineSeparator() +
+                //"Description: " + this.description + System.lineSeparator() +
+               //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 "Published at: " + this.publishedAt + System.lineSeparator() +
-                "Content: " + this.content + System.lineSeparator();
+                "Content: " + this.content + System.lineSeparator() +
+                "Read more on their website: " + this.url + System.lineSeparator();
+
     }
 
 /*

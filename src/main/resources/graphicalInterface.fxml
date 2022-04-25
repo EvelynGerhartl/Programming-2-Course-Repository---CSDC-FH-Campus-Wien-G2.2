@@ -64,10 +64,11 @@
             <Font name="SansSerif Regular" size="72.0" />
          </font>
       </Text>
-      <TextArea fx:id="textArea" editable="false" layoutX="182.0" layoutY="227.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="634.0" style="-fx-font-size: 18; -fx-background-color: ffffff;" wrapText="true">
+      <TextArea fx:id="textArea" editable="false" layoutX="182.0" layoutY="227.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="634.0" style="-fx-font-size: 14; -fx-background-color: ffffff;" wrapText="true">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </TextArea>
+      <ImageView fx:id="newsImage" fitHeight="150.0" fitWidth="150.0" layoutX="18.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

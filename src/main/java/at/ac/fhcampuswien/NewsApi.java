@@ -43,7 +43,7 @@ public class NewsApi {
     } */
 
 
-    public void topHeadlinesOnly() {
+    public String topHeadlinesOnly() {
         String json = null;
         try {
             json = run(urlBuilder);
@@ -53,18 +53,21 @@ public class NewsApi {
         Gson gson = new Gson();
         NewsResponse news = gson.fromJson(json,NewsResponse.class);
 
-        for (int i = 0; i < 3; i++) { //we want 3 articles
-            System.out.println("Title: " + news.getArticles().get(i).getTitle() +
-                   // "  - by " + news.getArticles().get(i).getAuthor() +             // author or just title?
-                    System.lineSeparator() + "Read more: " + news.getArticles().get(i).getUrl());             //url?
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 4; i++) {
+            sb.append(news.getArticles().get(i).getTitle());
+            sb.append(System.lineSeparator()).append("Read more: ").append(news.getArticles().get(i).getUrl());
+            sb.append(System.lineSeparator());
         }
+        return sb.toString();
 
     }
 
 
 
 
-    public void bitcoinHeadlines(){
+    public String bitcoinHeadlines(){
         String json = null;
         try {
             json = run(urlBuilder2);
@@ -74,19 +77,22 @@ public class NewsApi {
 
         Gson gson = new Gson();
         NewsResponse news = gson.fromJson(json,NewsResponse.class);
+        StringBuilder sb = new StringBuilder();
 
         //some queries don´t have a lot of articles, how many should we even have? If the amount of articles with query
         //word are more than 3, we still will only display 3
         //if it´s less than 3... we will just display them
         if (news.getTotalResults() >=3) {
-            System.out.println(news.getArticles().get(0));
-            System.out.println(news.getArticles().get(1));
-            System.out.println(news.getArticles().get(2));
+            sb.append(news.getArticles().get(0));
+            sb.append(news.getArticles().get(1));
+            sb.append(news.getArticles().get(2));
+
         } else {
             for (int i = 0; i < totalResults2(); i++) {
-                System.out.println(news.getArticles().get(i));
+                sb.append(news.getArticles().get(i));
             }
         }
+        return sb.toString();
     }
 /*
     public List<Article> topHeadlines() {

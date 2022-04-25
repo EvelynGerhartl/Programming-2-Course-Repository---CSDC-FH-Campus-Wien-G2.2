@@ -8,10 +8,11 @@ public class AppController {
 
     private List<Article> articles;
     NewsApi newsAp = new NewsApi();
+    NewsResponse newsResp = new NewsResponse();
 
 
     public AppController() {//constructor
-       // setArticles(generateMockList());
+       setArticles(newsResp.getArticles());
     }
 
     public void setArticles(List<Article> articles) {
@@ -33,6 +34,7 @@ public class AppController {
             System.out.println(new  ArrayList<>());
         } else {
             newsAp.topHeadlinesOnly();
+
         }
     }
 
