@@ -9,6 +9,7 @@ public class Article {
     private String url; //String?
     private String urlToImage; //String?
 
+    NewsResponse news = new NewsResponse();
 
     private Date publishedAt;
     private String content;
@@ -24,7 +25,7 @@ public class Article {
     }
 
     public Article(){
-
+        news.getArticles();
     }
     public String getAuthor() {
         return author;
@@ -84,7 +85,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Title: " + getTitle() + System.lineSeparator() +
+        return  "Title: " + getTitle() + System.lineSeparator() +
                 "Author: " + this.author  + System.lineSeparator() +
                 "Description: " + this.description  + System.lineSeparator() +
                 "Url: " + this.url  + System.lineSeparator() +

@@ -9,7 +9,7 @@ public class AppController {
 
 
     public AppController() {//constructor
-        setArticles(generateMockList());
+       // setArticles(generateMockList());
     }
 
     public void setArticles(List<Article> articles) {
@@ -46,7 +46,7 @@ public class AppController {
 
 
 
-
+/*
     private static List<Article> generateMockList() {
 
 
@@ -68,7 +68,7 @@ public class AppController {
     public List<Article> getMockList() { //to use private defined generateMockList in AppControllerTest for testing proposes
         return generateMockList();
     }
-
+*/
 
 
 

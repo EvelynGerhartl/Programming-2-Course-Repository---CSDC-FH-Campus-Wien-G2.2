@@ -34,6 +34,16 @@ public class App extends Application {
 
         Menu menu = new Menu();
 
+        TryingOutGson newsapi = new TryingOutGson();
+        System.out.println("__________ tryingOutOkHttp:");
+        newsapi.tryingOutOkHttp();
+        System.out.println("__________");
+        System.out.println("try nr 300:");
+        System.out.println();
+        newsapi.tryNr300();
+
+
+
 
 
         stage.show();
