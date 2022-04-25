@@ -30,7 +30,7 @@ public class Menu {
 
 
 
-     private void handleInput(String input) {
+    /* private void handleInput(String input) {
 
         if (input.equals("a")) {
             clickedA();
@@ -49,14 +49,14 @@ public class Menu {
         } else {
             printInvalidInputMessage();
         }
-    }
+    } */
 
     private void getArticleCount(AppController ctrl) {
         textArea.setText("Number of articles: " + ctrl.getArticleCount());
     }
 
     private void getTopHeadlinesAustria(AppController ctrl) {
-        textArea.setText(ctrl.getTopHeadlinesAustria().toString());
+         ctrl.getTopHeadlinesAustria(); //Text Area???
 
     }
 

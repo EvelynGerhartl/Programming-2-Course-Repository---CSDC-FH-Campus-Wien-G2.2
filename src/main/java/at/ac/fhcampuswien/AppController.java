@@ -1,11 +1,13 @@
 package at.ac.fhcampuswien;
 
+import java.io.IOException;
 import java.util.*;
 
 
 public class AppController {
 
     private List<Article> articles;
+    NewsApi newsAp = new NewsApi();
 
 
     public AppController() {//constructor
@@ -20,17 +22,17 @@ public class AppController {
         if (articles == null) {
             return 0;
         } else {
-            return articles.size();
+            return newsAp.totalResults();
         }
     }
 
 
-    public List<Article> getTopHeadlinesAustria() {
+    public void getTopHeadlinesAustria() { //changed from List to void
         //setArticles(generateMockList()); // Resets Number of Articles after Search "Bitcoin"
         if (articles == null) {
-            return new ArrayList<>();
+            System.out.println(new  ArrayList<>());
         } else {
-            return articles;
+            newsAp.topHeadlinesOnly();
         }
     }
 

@@ -84,14 +84,21 @@ public class Article {
     }
 
     @Override
-    public String toString() {
+   public String toString() {
         return "Title: " + getTitle() + System.lineSeparator() +
                 "Author: " + this.author + System.lineSeparator() +
                 "Description: " + this.description + System.lineSeparator() +
                 "Url: " + this.url + System.lineSeparator() +
-                "UrlToImage: " + this.urlToImage + System.lineSeparator() +
+               // "UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 "Published at: " + this.publishedAt + System.lineSeparator() +
                 "Content: " + this.content + System.lineSeparator();
     }
 
+/*
+    public String toString() {
+        return "Title: " + getTitle() + System.lineSeparator() +
+                "Author: " + getAuthor();
+    } */
+
 }
+

@@ -34,14 +34,19 @@ public class App extends Application {
 
         Menu menu = new Menu();
 
-        TryingOutGson newsapi = new TryingOutGson();
-        System.out.println("__________ tryingOutOkHttp:");
-        newsapi.tryingOutOkHttp();
-        System.out.println("__________");
-        System.out.println("try nr 300:");
-        System.out.println();
-        newsapi.tryNr300();
 
+        NewsApi newsapi = new NewsApi();
+        System.out.println("news: ");
+        System.out.println();
+        newsapi.topHeadlinesOnly();
+        System.out.println();
+        System.out.println("Number of articles: " + newsapi.totalResults());
+
+        NewsApi newsapi2 = new NewsApi();
+        System.out.println("bitcoin: ");
+        newsapi2.bitcoinHeadlines();
+        System.out.println("");
+        System.out.println("Number of articles: " + newsapi2.totalResults2());
 
 
 
