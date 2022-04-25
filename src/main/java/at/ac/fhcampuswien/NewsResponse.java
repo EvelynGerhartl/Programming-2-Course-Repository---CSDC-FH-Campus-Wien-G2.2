@@ -4,6 +4,12 @@ import java.util.List;
 
 public class NewsResponse {
 
+    private String status;
+
+    private int totalResults;
+
+    private List<Article> articles;
+
     public String getStatus() {
         return status;
     }
@@ -16,11 +22,7 @@ public class NewsResponse {
         return articles;
     }
 
-    private String status;
 
-    private int totalResults;
-
-    private List<Article> articles;
 
 
 
