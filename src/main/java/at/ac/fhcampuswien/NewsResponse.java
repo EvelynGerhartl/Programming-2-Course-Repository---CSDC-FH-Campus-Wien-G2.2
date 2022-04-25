@@ -4,7 +4,6 @@ import java.util.List;
 
 public class NewsResponse {
 
-    Article article = new Article();
     private String status;
     private int totalResults;
     private List<Article> articles;

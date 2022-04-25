@@ -25,7 +25,7 @@ public class Article {
     }
 
     public Article(){
-        news.getArticles();
+
     }
     public String getAuthor() {
         return author;
