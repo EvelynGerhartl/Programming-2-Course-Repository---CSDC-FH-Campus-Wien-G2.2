@@ -39,13 +39,12 @@ public class Menu {
     }
 
     private void getTopHeadlinesAustria(AppController ctrl) {
-        textArea.setText(newsApi.topHeadlinesOnly());
-       ctrl.getTopHeadlinesAustria();
+        textArea.setText(ctrl.getTopHeadlinesAustria());
 
     }
 
     private void getAllNewsBitcoin(AppController ctrl) {
-        textArea.setText(ctrl.getAllNewsBitcoin().toString());
+        textArea.setText(ctrl.getAllNewsBitcoin());
     }
 
     private static void printExitMessage() {

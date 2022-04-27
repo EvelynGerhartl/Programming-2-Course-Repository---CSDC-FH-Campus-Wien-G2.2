@@ -1,25 +1,36 @@
 package at.ac.fhcampuswien;
 
 import com.google.gson.Gson;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 public class NewsApi {
 
     String url1 = "https://newsapi.org/v2/top-headlines?q=&apiKey=9945141504194293afe0fadac8190f08&country=at";
-    String url2 = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=9945141504194293afe0fadac8190f08&country=at";
-    String q = "co";
+    String url2 = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=9945141504194293afe0fadac8190f08";
+    String url3 = "https://newsapi.org/v2/top-headlines?q=corona&apiKey=9945141504194293afe0fadac8190f08&country=at";
+    String url4 = "https://newsapi.org/v2/top-headlines?country=at&apiKey=9945141504194293afe0fadac8190f08";
+
+
+    String q = "bitcoin";
+    String queryTop = "corona";
     String q2 = "Biotechkonzern";
     String part1 = "https://newsapi.org/v2/top-headlines?q=";
     String part2 = "&apiKey=9945141504194293afe0fadac8190f08&country=at";
-    String urlBuilder = part1 + q + part2;
-    String urlBuilder2 = part1 + q2 + part2;
+    //String urlBuilder = part1 + q + part2; // bticoin
+    //String urlBuilder2 = part1 + queryTop + part2; // corona
 
-    private String getUrl(String q) {
-        return part1 + q + part2;
+    public String urlMaker(String query) {                      //why doesn´t this work???
+        return part1+query+part2;
+    }
+
+    public void setQ(String q) {
+        this.q = q;
     }
 
     //okhttp
@@ -46,7 +57,7 @@ public class NewsApi {
     public String topHeadlinesOnly() {
         String json = null;
         try {
-            json = run(urlBuilder);
+            json = run(url1);               //why doesn´t it work with urlMaker???!!
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,18 +70,39 @@ public class NewsApi {
             sb.append(news.getArticles().get(i).getTitle());
             sb.append(System.lineSeparator()).append("Read more: ").append(news.getArticles().get(i).getUrl());
             sb.append(System.lineSeparator());
+            sb.append("*******************************************************************************************************");
+            sb.append(System.lineSeparator());
         }
         return sb.toString();
 
     }
 
 
-
-
-    public String bitcoinHeadlines(){
+    /* public List<Article> topHeadlinesOnly() {
         String json = null;
         try {
-            json = run(urlBuilder2);
+            json = run(urlBuilder);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson gson = new Gson();
+        NewsResponse news = gson.fromJson(json,NewsResponse.class);
+
+        List<Article> articlesFromNewsApi = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            articlesFromNewsApi.add(news.getArticles().get(i));
+        }
+        return articlesFromNewsApi;
+
+    } */
+
+
+
+    public String completeNews(){
+        String json = null;
+        try {
+            json = run(url2); // q  = bitcoin
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,7 +120,7 @@ public class NewsApi {
             sb.append(news.getArticles().get(2));
 
         } else {
-            for (int i = 0; i < totalResults2(); i++) {
+            for (int i = 0; i < totalResults(); i++) {
                 sb.append(news.getArticles().get(i));
             }
         }
@@ -110,10 +142,12 @@ public class NewsApi {
  */
 
 
-    public int totalResults() {
+
+
+    public int totalResults() {         /** to be simplified so that we only have 1 totalResults method **/
         String json = null;
         try {
-            json = run(urlBuilder);
+            json = run(url3);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,10 +156,10 @@ public class NewsApi {
         return news.getTotalResults();
     }
 
-    public int totalResults2() {
+  /*  public int totalResultsBitcoin() {        /** to be simplified so that we only have 1 totalResults method
         String json = null;
         try {
-            json = run(urlBuilder2);
+            json = run(getUrl("bitcoin"));    // urlBuilder should be changeable
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -133,7 +167,7 @@ public class NewsApi {
         NewsResponse news = gson.fromJson(json,NewsResponse.class);
         return news.getTotalResults();
     }
-
+*/
 
 
 }

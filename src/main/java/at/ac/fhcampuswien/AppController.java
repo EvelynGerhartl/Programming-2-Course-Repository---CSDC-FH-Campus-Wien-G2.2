@@ -1,18 +1,17 @@
 package at.ac.fhcampuswien;
 
-import java.io.IOException;
 import java.util.*;
 
 
 public class AppController {
 
     private List<Article> articles;
-    NewsApi newsAp = new NewsApi();
+    NewsApi newsApi = new NewsApi();
     NewsResponse newsResp = new NewsResponse();
 
 
     public AppController() {//constructor
-       setArticles(newsResp.getArticles());
+        setArticles(newsResp.getArticles());
     }
 
     public void setArticles(List<Article> articles) {
@@ -20,21 +19,19 @@ public class AppController {
     }
 
     public int getArticleCount() {
-        if (articles == null) {
+        if (newsResp.getArticles() == null) {
             return 0;
         } else {
-            return newsAp.totalResults();
+            return newsResp.getTotalResults();                  /** to be fixed*/
         }
     }
 
 
-    public void getTopHeadlinesAustria() { //changed from List to void
-        //setArticles(generateMockList()); // Resets Number of Articles after Search "Bitcoin"
-        if (articles == null) {
-            System.out.println(new  ArrayList<>());
+    public String getTopHeadlinesAustria() { //changed from List to String
+        if (newsApi.topHeadlinesOnly() == null) {
+            return new  ArrayList<>().toString();
         } else {
-            newsAp.topHeadlinesOnly();
-
+            return newsApi.topHeadlinesOnly();
         }
     }
 
@@ -43,7 +40,15 @@ public class AppController {
         return articles;
     }
 
-    public List<Article> getAllNewsBitcoin() {
+    public String getAllNewsBitcoin() {         //String
+        if (newsApi.completeNews() == null) {
+            return new  ArrayList<>().toString();
+        } else {
+            return newsApi.completeNews();
+        }
+    }
+
+    public List<Article> getAllNewsBitcoinOld() {
         List<Article> containingBitcoin = filterList("Bitcoin", articles);
         return containingBitcoin;
     }

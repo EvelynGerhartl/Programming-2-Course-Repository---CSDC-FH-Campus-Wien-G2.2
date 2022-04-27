@@ -5,23 +5,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.PrintStream;
 import java.net.URL;
 
 public class App extends Application {
-@FXML
+    @FXML
     public static void main(String[] args) {
-       launch(args);
-
-
+        launch(args);
     }
 
     @Override
@@ -41,17 +36,20 @@ public class App extends Application {
         NewsApi newsapi = new NewsApi();
         System.out.println("news: ");
         System.out.println();
-        newsapi.topHeadlinesOnly();
-        System.out.println();
-        System.out.println("Number of articles: " + newsapi.totalResults());
+        System.out.println("Number of articles corona: " + newsapi.totalResults());
+        System.out.println("Number of articles co: " + newsapi.totalResults());
+        System.out.println("Number of articles none: " + newsapi.totalResults());
+
+
 
         NewsApi newsapi2 = new NewsApi();
         System.out.println("bitcoin: ");
-        System.out.println(newsapi2.bitcoinHeadlines());
-        System.out.println("");
-        System.out.println("Number of articles: " + newsapi2.totalResults2());
+        System.out.println(newsapi2.completeNews());
+        System.out.println("Nr of articles bitcoin: ");
+        newsapi.urlMaker("corona");
 
-
+        AppController ctrl = new AppController();
+        System.out.println(ctrl.getAllNewsBitcoin());
 
         stage.show();
 
