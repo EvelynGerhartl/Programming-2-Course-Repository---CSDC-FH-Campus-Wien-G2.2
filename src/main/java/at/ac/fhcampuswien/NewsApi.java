@@ -1,37 +1,27 @@
 package at.ac.fhcampuswien;
 
 import com.google.gson.Gson;
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
 
+
 public class NewsApi {
-
-    String url1 = "https://newsapi.org/v2/top-headlines?q=&apiKey=9945141504194293afe0fadac8190f08&country=at";
-    String url2 = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=9945141504194293afe0fadac8190f08";
-    String url3 = "https://newsapi.org/v2/top-headlines?q=corona&apiKey=9945141504194293afe0fadac8190f08&country=at";
-    String url4 = "https://newsapi.org/v2/top-headlines?country=at&apiKey=9945141504194293afe0fadac8190f08";
+    //key: 9945141504194293afe0fadac8190f08
+    //url: https://newsapi.org/v2/top-headlines?country=at&apiKey=9945141504194293afe0fadac8190f08&q=corona
 
 
-    String q = "bitcoin";
-    String queryTop = "corona";
-    String q2 = "Biotechkonzern";
-    String part1 = "https://newsapi.org/v2/top-headlines?q=";
-    String part2 = "&apiKey=9945141504194293afe0fadac8190f08&country=at";
-    //String urlBuilder = part1 + q + part2; // bticoin
-    //String urlBuilder2 = part1 + queryTop + part2; // corona
+    public String urlMaker(String query, String country, boolean trueForTopHeadlinesOnly) {
+        if (trueForTopHeadlinesOnly) {
+            return "https://newsapi.org/v2/top-headlines?country="+country+"&apiKey=9945141504194293afe0fadac8190f08&q="+query;
+        } else  {
+            return "https://newsapi.org/v2/everything?q="+query+"&apiKey=9945141504194293afe0fadac8190f08";
+        }
 
-    public String urlMaker(String query) {                      //why doesn´t this work???
-        return part1+query+part2;
     }
 
-    public void setQ(String q) {
-        this.q = q;
-    }
 
     //okhttp
     OkHttpClient client = new OkHttpClient();
@@ -47,30 +37,28 @@ public class NewsApi {
     }
 
 
-    /* public void tryingOutOkHttp() throws IOException {
-        System.out.println(
-                run("https://newsapi.org/v2/top-headlines?q=corona&apiKey=9945141504194293afe0fadac8190f08&country=at"));
-        //what I get is a string of json, need to translate it now
-    } */
-
-
-    public String topHeadlinesOnly() {
+    /** NOTE TO SELF: topHeadlinesOnly and completeNews could be easily simplified!! **/
+    public String topHeadlinesOnly(String query, String country, boolean trueForTopHeadlinesOnly) {
+        String url = urlMaker(query, country,trueForTopHeadlinesOnly);
         String json = null;
         try {
-            json = run(url1);               //why doesn´t it work with urlMaker???!!
+            json = run(url);         // topHeadlinesOnly has this parameters: query = a, country =at, &true for top headlines only
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         Gson gson = new Gson();
         NewsResponse news = gson.fromJson(json,NewsResponse.class);
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
+            sb.append("** ");
             sb.append(news.getArticles().get(i).getTitle());
             sb.append(System.lineSeparator()).append("Read more: ").append(news.getArticles().get(i).getUrl());
             sb.append(System.lineSeparator());
-            sb.append("*******************************************************************************************************");
+            sb.append("******************************************************************************************************");
             sb.append(System.lineSeparator());
         }
         return sb.toString();
@@ -78,34 +66,15 @@ public class NewsApi {
     }
 
 
-    /* public List<Article> topHeadlinesOnly() {
+    public String completeNews(String query, String country, boolean trueForTopHeadlinesOnly){
+        String url = urlMaker(query, country,trueForTopHeadlinesOnly);
         String json = null;
         try {
-            json = run(urlBuilder);
+            json = run(url);                 /** TO DO: !!get query from somewhere else!! */
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json,NewsResponse.class);
 
-        List<Article> articlesFromNewsApi = new ArrayList<>();
-
-        for (int i = 0; i < 4; i++) {
-            articlesFromNewsApi.add(news.getArticles().get(i));
-        }
-        return articlesFromNewsApi;
-
-    } */
-
-
-
-    public String completeNews(){
-        String json = null;
-        try {
-            json = run(url2); // q  = bitcoin
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         Gson gson = new Gson();
         NewsResponse news = gson.fromJson(json,NewsResponse.class);
@@ -126,28 +95,14 @@ public class NewsApi {
         }
         return sb.toString();
     }
-/*
-    public List<Article> topHeadlines() {
-        String json = null;
-        try {
-            json = run("https://newsapi.org/v2/top-headlines?q=corona&apiKey=9945141504194293afe0fadac8190f08&country=at");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json,NewsResponse.class);
-        return news.getArticles();
-    }
-
- */
 
 
 
-
+    //doesn´t work yet
     public int totalResults() {         /** to be simplified so that we only have 1 totalResults method **/
         String json = null;
         try {
-            json = run(url3);
+            json = run(urlMaker("a","at", true));         /** TO DO: !!get query from somewhere else!! */
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,19 +110,6 @@ public class NewsApi {
         NewsResponse news = gson.fromJson(json,NewsResponse.class);
         return news.getTotalResults();
     }
-
-  /*  public int totalResultsBitcoin() {        /** to be simplified so that we only have 1 totalResults method
-        String json = null;
-        try {
-            json = run(getUrl("bitcoin"));    // urlBuilder should be changeable
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json,NewsResponse.class);
-        return news.getTotalResults();
-    }
-*/
 
 
 }

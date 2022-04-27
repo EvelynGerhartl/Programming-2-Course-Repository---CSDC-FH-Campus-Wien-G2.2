@@ -11,47 +11,71 @@ public class AppController {
 
 
     public AppController() {//constructor
-        setArticles(newsResp.getArticles());
+        // setArticles(newsApi.topHeadlinesOnly());
+        /** to be fixed*/
+
     }
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
 
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
     public int getArticleCount() {
-        if (newsResp.getArticles() == null) {
+        // String article = newsApi.completeNews(); // get article somewhere!
+        if ( newsResp.getArticles() == null) {
             return 0;
         } else {
-            return newsResp.getTotalResults();                  /** to be fixed*/
+            return newsApi.totalResults();                  /** to be fixed*/ //when clicked, it´s always 0
         }
     }
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
+    /** to be fixed*/
 
 
     public String getTopHeadlinesAustria() { //changed from List to String
-        if (newsApi.topHeadlinesOnly() == null) {
+        if (newsApi.topHeadlinesOnly("a","at", true) == null) {
             return new  ArrayList<>().toString();
         } else {
-            return newsApi.topHeadlinesOnly();
+            return newsApi.topHeadlinesOnly("a","at", true);
+
         }
     }
 
+
+    /** not needed in ex2*/
+/*
     protected List<Article> filterList(String query, List<Article> articles) {
         articles.removeIf(a -> !a.getTitle().toLowerCase().contains(query.toLowerCase())); // Removes all Articles that don't contain query in the title, not case-sensitive
         return articles;
     }
+*/
 
     public String getAllNewsBitcoin() {         //String
-        if (newsApi.completeNews() == null) {
+        if (newsApi.completeNews("bitcoin", "", false) == null) {
             return new  ArrayList<>().toString();
         } else {
-            return newsApi.completeNews();
+            return newsApi.completeNews("bitcoin", "", false);
         }
     }
 
-    public List<Article> getAllNewsBitcoinOld() {
+    /* from ex1:
+    public List<Article> getAllNewsBitcoin() {
         List<Article> containingBitcoin = filterList("Bitcoin", articles);
         return containingBitcoin;
     }
+
+     */
 
 
 

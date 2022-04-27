@@ -31,25 +31,33 @@ public class App extends Application {
         stage.setResizable(false);
 
 
-
+        System.out.println("hi");
 
         NewsApi newsapi = new NewsApi();
+        System.out.println(newsapi.urlMaker("queryyyyy","at", true));
+        System.out.println(newsapi.urlMaker("query2", "de", false));
+/*
         System.out.println("news: ");
         System.out.println();
+        newsapi.topHeadlinesOnly("a","at", true);
         System.out.println("Number of articles corona: " + newsapi.totalResults());
-        System.out.println("Number of articles co: " + newsapi.totalResults());
-        System.out.println("Number of articles none: " + newsapi.totalResults());
-
-
-
-        NewsApi newsapi2 = new NewsApi();
-        System.out.println("bitcoin: ");
-        System.out.println(newsapi2.completeNews());
-        System.out.println("Nr of articles bitcoin: ");
-        newsapi.urlMaker("corona");
-
+       //System.out.println("Number of articles co: " + newsapi.totalResults());
+       //System.out.println("Number of articles none: " + newsapi.totalResults());
         AppController ctrl = new AppController();
-        System.out.println(ctrl.getAllNewsBitcoin());
+
+        System.out.println("from control: " + ctrl.getArticleCount());
+        System.out.println(newsapi.topHeadlinesOnly("corona", "at", true));
+
+
+
+        //NewsApi newsapi2 = new NewsApi();
+       // System.out.println("bitcoin: ");
+        //System.out.println(newsapi2.completeNews());
+       // System.out.println("Nr of articles bitcoin: ");
+       // System.out.println(newsapi.urlMaker("corona",""));
+        //System.out.println(newsapi.urlMaker2("corona"));
+
+*/
 
         stage.show();
 

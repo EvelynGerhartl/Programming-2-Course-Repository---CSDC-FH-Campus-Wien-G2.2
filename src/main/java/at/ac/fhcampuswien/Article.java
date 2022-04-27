@@ -86,13 +86,14 @@ public class Article {
     @Override
     public String toString() {
         return  "Title: " + getTitle() + System.lineSeparator() +
-                "Author: " + getTitle() + System.lineSeparator() +
+                "Author: " + getAuthor() + System.lineSeparator() +
                 //"Description: " + this.description + System.lineSeparator() +
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 "Published at: " + getPublishedAt() + System.lineSeparator() +
                 "Content: " + getContent() + System.lineSeparator() + System.lineSeparator() +
                 "Read more on their website: " + getUrl() + System.lineSeparator() +
-                "******************************************************************" + System.lineSeparator();
+                "*******************************************************************************************************"
+                + System.lineSeparator();
 
     }
 

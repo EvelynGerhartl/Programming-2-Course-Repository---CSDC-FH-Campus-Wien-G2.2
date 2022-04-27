@@ -110,18 +110,11 @@ public class Menu {
 
     }
 
-    public void urlToImage(String imageUrl) {
+  /*  public void urlToImage(String imageUrl) {
         newsImage = new ImageView(imageUrl);
 
     }
+   */
 
-
-/*
-    public static void outputStream() {
-        PrintStream printStream = new PrintStream(new CustomOutputStream(textArea));
-        System.setOut(printStream);
-    }
-
- */
 }
 
