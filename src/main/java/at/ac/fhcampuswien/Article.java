@@ -6,10 +6,8 @@ public class Article {
     private String author;
     private String title;
     private String description;
-    private String url; //String?
-    private String urlToImage; //String?
-
-
+    private String url;
+    private String urlToImage;
     private Date publishedAt;
     private String content;
 
@@ -24,84 +22,49 @@ public class Article {
     }
 
     public Article() {
-
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getUrl() {
         return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public String getUrlToImage() {
         return urlToImage;
     }
 
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImage = urlToImage;
-    }
 
     public Date getPublishedAt() {
         return publishedAt;
-    }
-
-    public void setPublishedAt(Date publishedAt) {
-        this.publishedAt = publishedAt;
     }
 
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     @Override
     public String toString() {
-        return  "Title: " + getTitle() + System.lineSeparator() +
-                "Author: " + getAuthor() + System.lineSeparator() +
+        return  ">> " + getTitle() +  " <<" + System.lineSeparator() +
+                "(Published by " + getAuthor() + ", on " + getPublishedAt() + ")" + System.lineSeparator() +
                 //"Description: " + this.description + System.lineSeparator() +
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
-                "Published at: " + getPublishedAt() + System.lineSeparator() +
-                "Content: " + getContent() + System.lineSeparator() + System.lineSeparator() +
-                "Read more on their website: " + getUrl() + System.lineSeparator() +
-                "*******************************************************************************************************"
-                + System.lineSeparator();
-
+                getContent() + System.lineSeparator() + System.lineSeparator() +
+                "Copy the link to read more on their website: " + getUrl() + System.lineSeparator() +
+                "****************************************************************************************************"
+                + System.lineSeparator() + System.lineSeparator();
     }
-
-/*
-    public String toString() {
-        return "Title: " + getTitle() + System.lineSeparator() +
-                "Author: " + getAuthor();
-    } */
 
 }
 

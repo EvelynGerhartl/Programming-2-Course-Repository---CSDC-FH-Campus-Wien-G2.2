@@ -14,8 +14,9 @@ public class Menu {
 
     public ImageView newsImage;
     private AppController ctrl = new AppController();
-    private static final String INVALID_INPUT_MESSAGE = "Invalid input message. Please, try again!";
     private static final String EXIT_MESSAGE = "Bye Bye!";
+    //private static final String INVALID_INPUT_MESSAGE = "Invalid input message. Please, try again!";
+    //there´s no input in ex2 (javafx)
 
     @FXML
     public Text text1;
@@ -31,7 +32,7 @@ public class Menu {
     public Text bigText;
 
     private void getArticleCount(AppController ctrl) {
-        textArea.setText("Number of articles: " + ctrl.getArticleCount());
+        textArea.setText(" Number of articles: " + ctrl.getArticleCount());
     }
 
     private void getTopHeadlinesAustria(AppController ctrl) {
@@ -44,14 +45,16 @@ public class Menu {
     }
 
     private static void printExitMessage() {
-        System.out.println(EXIT_MESSAGE);                   //exit message is shown in console after closing aplication
+        System.out.println(EXIT_MESSAGE);                   //exit message is shown in console after closing application
         Platform.exit();
 
     }
 
-    private static void printInvalidInputMessage() {        //not used, there's no invalid input in ex2
+    /* not used, there's no invalid input in ex2
+    private static void printInvalidInputMessage() {
         System.out.println(INVALID_INPUT_MESSAGE);
     }
+     */
 
 
 

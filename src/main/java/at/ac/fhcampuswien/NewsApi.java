@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
 import java.io.IOException;
 import java.util.Objects;
 
@@ -42,67 +41,6 @@ public class NewsApi {
     }
 
 
-    /*
-    public String topHeadlinesOnly(String query, String country, boolean trueForTopHeadlinesOnly) {
-        String url = urlMaker(query, country, trueForTopHeadlinesOnly);
-        String json = null;
-        try {
-            json = run(url);         // topHeadlinesOnly has this parameters: query = a, country =at, &true for top headlines only
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json, NewsResponse.class);
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < 10; i++) {
-            sb.append("** ");
-            sb.append(news.getArticles().get(i).getTitle());
-            sb.append(System.lineSeparator()).append("Read more: ").append(news.getArticles().get(i).getUrl());
-            sb.append(System.lineSeparator());
-            sb.append("******************************************************************************************************");
-            sb.append(System.lineSeparator());
-        }
-        return sb.toString();
-
-    }
-
-    /*
-
-    public String completeNews(String query, String country, boolean trueForTopHeadlinesOnly) {
-        String url = urlMaker(query, country, trueForTopHeadlinesOnly);
-        String json = null;
-        try {
-            json = run(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json, NewsResponse.class);
-        StringBuilder sb = new StringBuilder();
-
-        //some queries don´t have a lot of articles, how many should we even have? If the amount of articles with query
-        //word are more than 3, we still will only display 3
-        //if it´s less than 3... we will just display them
-        if (news.getTotalResults() >= 3) {
-            sb.append(news.getArticles().get(0));
-            sb.append(news.getArticles().get(1));
-            sb.append(news.getArticles().get(2));
-
-        } else {
-            for (int i = 0; i < totalResults(); i++) {
-                sb.append(news.getArticles().get(i));
-            }
-        }
-        return sb.toString();
-    }
-*/
-
     public String getTheNews(String query, String country, boolean trueForTopHeadlinesOnly) {
         String url = urlMaker(query, country, trueForTopHeadlinesOnly); //builds the url according to the parameters
 
@@ -126,11 +64,11 @@ public class NewsApi {
         //"format" of only Top Headlines
         if (trueForTopHeadlinesOnly) {
             for (int i = 0; i < 10; i++) {          // maximum 10 articles
-                sb.append("** ");
+                sb.append(">> ");
                 sb.append(news.getArticles().get(i).getTitle());
                 sb.append(System.lineSeparator()).append("Read more: ").append(news.getArticles().get(i).getUrl());
                 sb.append(System.lineSeparator());
-                sb.append("******************************************************************************************************");
+                sb.append("***************************************************************************************************");
                 sb.append(System.lineSeparator());
             }
 
