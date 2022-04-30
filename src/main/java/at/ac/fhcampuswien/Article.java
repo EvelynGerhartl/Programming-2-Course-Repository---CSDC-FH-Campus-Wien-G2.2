@@ -56,7 +56,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return  ">> " + getTitle() +  " <<" + System.lineSeparator() +
+        return ">> " + getTitle() + " <<" + System.lineSeparator() +
                 "(Published by " + getAuthor() + ", on " + getPublishedAt() + ")" + System.lineSeparator() +
                 //"Description: " + this.description + System.lineSeparator() +
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +

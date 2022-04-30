@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -14,7 +15,6 @@ public class NewsApi {
     //url: https://newsapi.org/v2/top-headlines?country=at&apiKey=9945141504194293afe0fadac8190f08&q=corona
 
     NewsResponse newsResponse = new NewsResponse();
-
 
 
     // builds URL to get according to query, country and if top headlines only or everything
@@ -73,15 +73,17 @@ public class NewsApi {
             }
 
 
-        } else { //format of "whole news" (content, author, etc, etc)
+        } else { //format of "all news" - used in "get all news bitcoin" (content, author, etc, etc)
 
-            if (news.getTotalResults() >= 3) {     // if there´s more than 3 articles of the specific query, we only want to display 3
+            if (news.getTotalResults() >= 3) {
+                // if there´s more than 3 articles of the specific query, we only want to display 3
                 sb.append(news.getArticles().get(0));
                 sb.append(news.getArticles().get(1));
                 sb.append(news.getArticles().get(2));
 
             } else {
-                for (int i = 0; i < totalResults(); i++) {  //if the number of articles(total results) is smaller than 3, we only want the amount there is
+                for (int i = 0; i < totalResults(); i++) {
+                    //if the number of articles(total results) is smaller than 3, we only want the amount there is
                     sb.append(news.getArticles().get(i));
                 }
             }
@@ -90,7 +92,6 @@ public class NewsApi {
         // depending on which "if" statement was done, sb will either have the Top Headlines, whole news, etc, etc
         // toString() because we needed for our TextArea (gui)
     }
-
 
 
     //give the total results of all "available" news in at
