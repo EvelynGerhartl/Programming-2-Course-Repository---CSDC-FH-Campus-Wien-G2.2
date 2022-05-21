@@ -4,8 +4,12 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 
 public class Menu {
@@ -101,10 +105,28 @@ public class Menu {
 
     }
 
-  /*  public void urlToImage(String imageUrl) {
-        newsImage = new ImageView(imageUrl);
+    public void streamsAnalysis1() {
+    }
+    public void streamsAnalysis2() {
+    }
+    public void streamsAnalysis3() {
+        System.out.println(ctrl.streamsAnalysis3("New York Times"));
 
-    }  */
+    }
+    public void streamsAnalysis4() {
+    }
+    public void streamsAnalysis5() {
+        try {
+            textArea.setText(ctrl.streamAnalysis5().toString());
+
+        } catch(Exception e) {
+            textArea.setText("Top Headlines have no description to sort by. Please choose another option!");
+            System.out.println(e.getMessage()); // comment out before deadline
+
+        }
+    }
+
+
 
 }
 

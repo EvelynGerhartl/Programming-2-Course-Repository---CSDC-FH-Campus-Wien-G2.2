@@ -10,6 +10,7 @@ public class Article {
     private String urlToImage;
     private Date publishedAt;
     private String content;
+    private Source source;
 
     public Article(String author, String title, String description, String url, String urlToImage, Date publishedAt, String content) {
         this.author = author;
@@ -36,6 +37,10 @@ public class Article {
         return description;
     }
 
+    public int getDescriptionLength() {
+        return getDescription().length();
+    }
+
     public String getUrl() {
         return url;
     }
@@ -58,12 +63,19 @@ public class Article {
     public String toString() {
         return ">> " + getTitle() + " <<" + System.lineSeparator() +
                 "(Published by " + getAuthor() + ", on " + getPublishedAt() + ")" + System.lineSeparator() +
-                //"Description: " + this.description + System.lineSeparator() +
+             //   "Description length: " + getDescriptionLength() +
+                "Description: " + getDescription() + System.lineSeparator() +
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 getContent() + System.lineSeparator() + System.lineSeparator() +
                 "Copy the link to read more on their website: " + getUrl() + System.lineSeparator() +
                 "****************************************************************************************************"
                 + System.lineSeparator() + System.lineSeparator();
+    }
+
+
+
+    public Source getSource() {
+        return source;
     }
 
 }
