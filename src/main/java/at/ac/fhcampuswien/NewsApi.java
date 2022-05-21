@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -41,6 +42,30 @@ public class NewsApi {
     }
 
 
+    /** Feedback: change that it gets the last possible count (bitcoin or top headlines)
+     * Solution: changed that get the news returns a List<Article> (not string).
+     * getArticleCount in AppController works without any extra totalResults method.
+     *
+     * Feedback: "format" crowding NewsApi... better to have it in AppController
+     * Solution: StringBuilder/Format is now in AppController
+     * */
+    /*
+      public int totalResults() {
+
+        String url = urlMaker("corona", "at", false);
+        String json = null;
+        try {
+            json = run(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson gson = new Gson();
+        NewsResponse news = gson.fromJson(json, NewsResponse.class);
+        return news.getTotalResults();
+    }
+
+*/
+    /*
     public String getTheNews(String query, String country, boolean trueForTopHeadlinesOnly) {
         String url = urlMaker(query, country, trueForTopHeadlinesOnly); //builds the url according to the parameters
 
@@ -60,7 +85,9 @@ public class NewsApi {
         // String Builder to build whatever "format" we need.
         StringBuilder sb = new StringBuilder();
 
-
+        /** change the "format" to make it better, less crowded
+         * better to have it in AppController */
+/*
         //"format" of only Top Headlines
         if (trueForTopHeadlinesOnly) {
             for (int i = 0; i < 10; i++) {          // maximum 10 articles
@@ -93,21 +120,29 @@ public class NewsApi {
         // toString() because we needed for our TextArea (gui)
     }
 
+*/
 
-    //give the total results of all "available" news in at
-    //according to ex2: "'q' must always be sent to the API!, you can choose the query freely - we choose corona
-    public int totalResults() {
-        String url = urlMaker("corona", "at", false);
+
+    public List<Article> getTheNews(String query, String country, boolean trueForTopHeadlinesOnly) {
+        String url = urlMaker(query, country, trueForTopHeadlinesOnly); //builds the url according to the parameters
+
         String json = null;
         try {
             json = run(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        // "translating json to gson"
         Gson gson = new Gson();
         NewsResponse news = gson.fromJson(json, NewsResponse.class);
-        return news.getTotalResults();
-    }
 
+
+        return news.getArticles();
+
+        // depending on which "if" statement was done, sb will either have the Top Headlines, whole news, etc, etc
+        // toString() because we needed for our TextArea (gui)
+    }
 
 }

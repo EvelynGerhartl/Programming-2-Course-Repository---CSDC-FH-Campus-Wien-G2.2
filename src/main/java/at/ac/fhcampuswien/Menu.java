@@ -48,12 +48,6 @@ public class Menu {
 
     }
 
-    /* not used, there's no invalid input in ex2
-    private static void printInvalidInputMessage() {
-        System.out.println(INVALID_INPUT_MESSAGE);
-    }
-     */
-
 
     public void clickedA() {
         getTopHeadlinesAustria(ctrl);

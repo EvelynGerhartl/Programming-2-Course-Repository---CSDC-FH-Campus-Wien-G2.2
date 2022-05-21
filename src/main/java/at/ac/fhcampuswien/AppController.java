@@ -9,16 +9,19 @@ public class AppController {
     NewsApi newsApi = new NewsApi();
 
 
-    public AppController() {//constructor
-        setArticles(newsApi.newsResponse.getArticles());
-
-    }
-
-    public void setArticles(List<Article> articles) {
+    public void setArticles(List<Article> articles){
         this.articles = articles;
     }
 
+    public List<Article> getArticles(){
+        return articles;
+    }
 
+    public AppController() {
+    }
+
+
+/*
     public int getArticleCount() {
         if (newsApi.getTheNews("corona", "at", false) == null) {
             return 0;
@@ -27,28 +30,55 @@ public class AppController {
         }
     }
 
+ */
+
+    public int getArticleCount(){
+        if(articles == null) {
+            return 0;
+        }
+        return articles.size();
+    }
 
     public String getTopHeadlinesAustria() { //changed from List to String
-        if (newsApi.getTheNews("a", "at", true) == null) { //top
+        if (newsApi.getTheNews("corona", "at", true) == null) { //top
             return new ArrayList<>().toString();
         } else {
-            return newsApi.getTheNews("a", "at", true); //top
+            articles = newsApi.getTheNews("corona", "at", true); //top
+            setArticles(articles);
+
+
+            //format
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < articles.size(); i++) {          // maximum 10 articles
+                sb.append(getArticleCount());
+                sb.append(articles.size());
+                sb.append(">> ");
+                sb.append(articles.get(i).getTitle());
+                sb.append(System.lineSeparator()).append("Read more: ").append(articles.get(i).getUrl());
+                sb.append(System.lineSeparator());
+                sb.append("***************************************************************************************************");
+                sb.append(System.lineSeparator());
+            }
+            return sb.toString();
 
         }
     }
 
 
-    /** not needed in ex2*/
-    /* protected List<Article> filterList(String query, List<Article> articles) {
-        articles.removeIf(a -> !a.getTitle().toLowerCase().contains(query.toLowerCase())); // Removes all Articles that don't contain query in the title, not case-sensitive
-        return articles;
-    } */
-
     public String getAllNewsBitcoin() {         //String
         if (newsApi.getTheNews("bitcoin", "", false) == null) { //complete
             return new ArrayList<>().toString();
         } else {
-            return newsApi.getTheNews("bitcoin", "", false);  //complete
+            articles = newsApi.getTheNews("bitcoin", "", false);  //complete
+            setArticles(articles);
+
+            //better format (no [ or , from array)
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < articles.size(); i++) {
+                sb.append(articles.get(i));
+            }
+            return sb.toString();
         }
     }
 
