@@ -136,17 +136,21 @@ public class Menu {
     public void streamsAnalysis1() {
         //Which provider (= source) delivers the most articles?
         try {
-            textArea.setText(ctrl.biggestSource().toString());
-        } catch (NullPointerException npe) {
-            System.out.println(npe.getMessage());
+            textArea.setText(ctrl.biggestSource());
+        } catch (NewsApiException nae) {
+            textArea.setText(nae.getMessage());
+            System.out.println(nae.getMessage());
         }
     }
-    public void streamsAnalysis2() {
+    public void streamsAnalysis2() throws NewsApiException {
         //Which author has the longest name?
         try {
-            textArea.setText(ctrl.longestAuthorName());
-        } catch (NullPointerException npe) {
-            System.out.println(npe.getMessage());
+            ctrl.longestAuthorName();
+            textArea.setText(ctrl.longestAuthorName().toString());
+        } catch (NewsApiException nae) {
+            textArea.setText(nae.getMessage());
+        //} catch (NullPointerException npe) {
+         //   throw new NewsApiException();
         }
 
     }
@@ -156,14 +160,9 @@ public class Menu {
         try {
             textArea.setText(ctrl.streamAnalysis5().toString());
 
-        } catch (Exception e) {
-            if (ctrl.getArticles() == null) {
-                textArea.setText("Hey there! Please choose an article option before sorting." );
-            } else {
-                textArea.setText("Hey there! It seems the article you chose cannot be sorted by description."
-                        + System.lineSeparator() + "Please choose another option :) ");
-            }
-            System.out.println(e.getMessage()); // comment out before deadline
+        } catch (NewsApiException nae) {
+            textArea.setText(nae.getMessage());
+            System.out.println(nae.getMessage()); // comment out before deadline
         }
 
     }
@@ -171,3 +170,4 @@ public class Menu {
 
 
 }
+

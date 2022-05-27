@@ -140,9 +140,6 @@ public class NewsApi {
 
 
         return news.getArticles();
-
-        // depending on which "if" statement was done, sb will either have the Top Headlines, whole news, etc, etc
-        // toString() because we needed for our TextArea (gui)
     }
 
 }

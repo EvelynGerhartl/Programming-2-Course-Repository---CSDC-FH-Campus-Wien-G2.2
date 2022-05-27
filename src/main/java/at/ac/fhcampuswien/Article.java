@@ -5,7 +5,7 @@ import java.util.Date;
 public class Article {
     private String author;
     private String title;
-    private String description;
+    public String description;
     private String url;
     private String urlToImage;
     private Date publishedAt;
@@ -33,6 +33,10 @@ public class Article {
         return getAuthor().length();
     }
 
+    //public int getAuthorLength() {
+     //   return getAuthor().length();
+   // }
+
     public String getTitle() {
         return title;
     }
@@ -42,7 +46,7 @@ public class Article {
     }
 
     public int getDescriptionLength() {
-        return getDescription().length();
+        return description.length();
     }
 
     public String getUrl() {
@@ -72,6 +76,7 @@ public class Article {
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 getContent() + System.lineSeparator() + System.lineSeparator() +
                 "Copy the link to read more on their website: " + getUrl() + System.lineSeparator() +
+                "Source: " + getName() +
                 "****************************************************************************************************"
                 + System.lineSeparator() + System.lineSeparator();
     }
@@ -80,6 +85,10 @@ public class Article {
 
     public Source getSource() {
         return source;
+    }
+
+    public String getName() {
+        return source.getName();
     }
 
 }
