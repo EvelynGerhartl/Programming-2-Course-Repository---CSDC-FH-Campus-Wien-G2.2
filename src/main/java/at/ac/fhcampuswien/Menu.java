@@ -4,12 +4,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 
 public class Menu {
@@ -101,32 +97,77 @@ public class Menu {
         text2.setFill(Color.WHITE);
         text3.setFill(Color.WHITE);
         text4.setFill(Color.WHITE);
+    }
 
+
+
+
+
+    // ex3: Analysis with streams
+
+    /** START finished methods */
+
+    // 3) How many articles come from the source "New York Times"?
+    public void countFromSource() {
+        String source = "New York Times";
+        try {
+            textArea.setText("There's " + ctrl.getCountFromSource(source) + " articles from '" + source + "' in the previously loaded articles.");
+
+        } catch(NewsApiException nae) {
+            System.out.println("Exception caught from countFromSource!");
+            textArea.setText(nae.getMessage());
+        }
 
     }
+
+    // 4) Which articles have a title that consists of less than 15 characters?
+    public void titleLessThan15() {
+        try {
+            textArea.setText(ctrl.getTitleLessThan15());
+        } catch (NewsApiException nae) {
+            textArea.setText(nae.getMessage());
+            System.out.println("Exception caught from getTitleLessthan15! "); //delete before Abgabe
+        }
+    }
+
+    /** END finished methods */
+
 
     public void streamsAnalysis1() {
+        //Which provider (= source) delivers the most articles?
+        try {
+            textArea.setText(ctrl.biggestSource().toString());
+        } catch (NullPointerException npe) {
+            System.out.println(npe.getMessage());
+        }
     }
     public void streamsAnalysis2() {
-    }
-    public void streamsAnalysis3() {
-        System.out.println(ctrl.streamsAnalysis3("New York Times"));
+        //Which author has the longest name?
+        try {
+            textArea.setText(ctrl.longestAuthorName());
+        } catch (NullPointerException npe) {
+            System.out.println(npe.getMessage());
+        }
 
     }
-    public void streamsAnalysis4() {
-    }
+
     public void streamsAnalysis5() {
+
         try {
             textArea.setText(ctrl.streamAnalysis5().toString());
 
-        } catch(Exception e) {
-            textArea.setText("Top Headlines have no description to sort by. Please choose another option!");
+        } catch (Exception e) {
+            if (ctrl.getArticles() == null) {
+                textArea.setText("Hey there! Please choose an article option before sorting." );
+            } else {
+                textArea.setText("Hey there! It seems the article you chose cannot be sorted by description."
+                        + System.lineSeparator() + "Please choose another option :) ");
+            }
             System.out.println(e.getMessage()); // comment out before deadline
-
         }
+
     }
 
 
 
 }
-

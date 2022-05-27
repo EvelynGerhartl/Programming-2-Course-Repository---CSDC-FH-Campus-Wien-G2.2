@@ -29,6 +29,10 @@ public class Article {
         return author;
     }
 
+    public int getAuthorLength() {
+        return getAuthor().length();
+    }
+
     public String getTitle() {
         return title;
     }
@@ -63,7 +67,7 @@ public class Article {
     public String toString() {
         return ">> " + getTitle() + " <<" + System.lineSeparator() +
                 "(Published by " + getAuthor() + ", on " + getPublishedAt() + ")" + System.lineSeparator() +
-             //   "Description length: " + getDescriptionLength() +
+                //   "Description length: " + getDescriptionLength() +
                 "Description: " + getDescription() + System.lineSeparator() +
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 getContent() + System.lineSeparator() + System.lineSeparator() +
@@ -79,4 +83,3 @@ public class Article {
     }
 
 }
-
