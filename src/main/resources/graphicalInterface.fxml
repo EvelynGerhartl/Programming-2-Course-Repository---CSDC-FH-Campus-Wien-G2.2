@@ -72,7 +72,7 @@
       </TextArea>
       <ImageView fx:id="newsImage" fitHeight="150.0" fitWidth="150.0" layoutX="18.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="297.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#streamsAnalysis1" text="1 provider" />
-      <Button layoutX="384.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#streamsAnalysis2" text="2 author" />
+      <Button layoutX="384.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#longestAuthorName" text="2 author" />
       <Button layoutX="466.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#countFromSource" text="3 NY Times" />
       <Button layoutX="565.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#titleLessThan15" text="4 title &lt;15" />
       <Button layoutX="651.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#streamsAnalysis5" text="5 sorty by length" />

@@ -34,8 +34,8 @@ public class Article {
     }
 
     //public int getAuthorLength() {
-     //   return getAuthor().length();
-   // }
+    //   return getAuthor().length();
+    // }
 
     public String getTitle() {
         return title;
@@ -46,7 +46,7 @@ public class Article {
     }
 
     public int getDescriptionLength() {
-        return description.length();
+        return getDescription().length();
     }
 
     public String getUrl() {

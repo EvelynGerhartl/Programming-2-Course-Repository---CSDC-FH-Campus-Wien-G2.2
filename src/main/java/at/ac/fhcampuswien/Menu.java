@@ -133,7 +133,7 @@ public class Menu {
     /** END finished methods */
 
 
-    public void streamsAnalysis1() {
+    public void streamsAnalysis1(){
         //Which provider (= source) delivers the most articles?
         try {
             textArea.setText(ctrl.biggestSource());
@@ -142,15 +142,15 @@ public class Menu {
             System.out.println(nae.getMessage());
         }
     }
-    public void streamsAnalysis2() throws NewsApiException {
+    public void longestAuthorName() { // check exceptions
         //Which author has the longest name?
         try {
-            ctrl.longestAuthorName();
-            textArea.setText(ctrl.longestAuthorName().toString());
+            textArea.setText(ctrl.getLongestAuthorName());
         } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
-        //} catch (NullPointerException npe) {
-         //   throw new NewsApiException();
+        } catch (Exception e) { //???
+            System.out.println("caught");
+            System.out.println(e.getMessage());
         }
 
     }
