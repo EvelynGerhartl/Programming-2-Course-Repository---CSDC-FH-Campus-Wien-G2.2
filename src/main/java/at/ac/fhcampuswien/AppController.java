@@ -96,10 +96,8 @@ public class AppController {
     }
 
 
-    //ex 3 Streams : Analyzes the loaded articles.
-
     /**
-     * START methods finished
+     * exercise 3: streams to analyze loaded articles
      */
     //3) How many articles come from the source "New York Times"?
     int getCountFromSource(String source) throws NewsApiException {
@@ -143,6 +141,12 @@ public class AppController {
                     .filter(article -> article.getAuthor() != null)
                     .sorted(Comparator.comparingInt(article -> article.getAuthor().length()))
                     .collect(Collectors.toList());
+
+            if(articles.size() < 1) {
+                //Index -1 out of bounds for length 0
+                throw new NewsApiException("It's not possible to get the longest author name in the previously loaded article."
+                        + System.lineSeparator() + "Please choose an article and try again.");
+            }
             return "The author with the longest name is: " + System.lineSeparator()
                     + articles.get(articles.size() - 1).getAuthor();
             //articles.size()-1 .. last index = longest author name
@@ -166,35 +170,30 @@ public class AppController {
             List<Map.Entry<String, Long>> max = grouped.entrySet()
                     .stream().sorted(Comparator.comparingLong(Map.Entry::getValue)).toList();
 
-            // we need the LAST source (because it's sorted to be the biggest one)
-            // last index of the list: size of list minus 1 - if list's size is 6, the last index is 5
-            String biggestProvider = max.get(max.size() - 1).getKey();            //key = source
-            String articleCount = max.get(max.size() - 1).getValue().toString();  //value = article count
 
-            return "'" + biggestProvider + "'" + " is the provider with more articles, with " + articleCount + " articles.";
+            if(max.size() < 1) {
+                //Index -1 out of bounds for length 0
+                throw new NewsApiException("It's not possible to get the biggest provider of the previously loaded article."
+                        + System.lineSeparator() + "Please choose an article and try again.");
+            } else {
+                // we need the LAST source (because it's sorted to be the biggest one)
+                // last index of the list: size of list minus 1 - if list's size is 6, the last index is 5
+                String biggestProvider = max.get(max.size() - 1).getKey();            //key = source
+                String articleCount = max.get(max.size() - 1).getValue().toString();  //value = article count
+                return "'" + biggestProvider + "'" + " is the provider with more articles, with " + articleCount + " articles.";
+
+            }
+
+
 
         }
 
     }
 
-    /**
-     * END methods finished
-     */
 
-
-    /** START almost ready */
-
-    /**
-     * DOESN'T WORK WITH TOP HEADLINES FOR SOME REASON!!!
-     */
     //5) Sort the articles by the length of their description in ascending order.  ✓
     // If the descriptions of articles are of the same length, the sorting should be alphabetical. ✓
-    List<Article> streamAnalysis5() throws NewsApiException {
-        //List<Article> descripList = articles;
-        //descripList.removeIf(article -> article.getDescription().isEmpty());
-//|| descripList.size() == 0
-        //                throw new NewsApiException("Hey there! It seems the article you chose cannot be sorted by description. Please choose another option");
-
+    List<Article> sortByDescription() throws NewsApiException {
 
         if (articles == null || articles.isEmpty()) {
             System.out.println("caught at 5th analysis"); //comment out before deadline
@@ -202,6 +201,7 @@ public class AppController {
 
         } else {
             articles = articles.stream()
+                    .filter(article -> article.getDescription() != null)
                     .sorted(Comparator.comparingInt(Article::getDescriptionLength) //by length
                             .thenComparing(Article::getDescription)) //alphabetical
                     .collect(toList());
@@ -210,20 +210,4 @@ public class AppController {
         }
 
     }
-
-    /**
-     * END almost ready
-     */
-
-/*
-    String largestSource() {
-        //Which provider (= source) delivers the most articles?
-        articles = articles.stream()
-                .max(Comparator.comparingInt(article-> article.getName().length()))
-                .stream().toList();
-        return articles.toString();
-    }*/
-
-
-
 }

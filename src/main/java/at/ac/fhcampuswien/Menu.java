@@ -69,33 +69,27 @@ public class Menu {
 
 
     public void onHover1() {
-        text1.setFill(Color.web("#007178"));
+        text1.setFill(Color.BLACK);
         opt1.setOpacity(0.5);
     }
 
     public void onHover2() {
-        text2.setFill(Color.web("#007178"));
+        text2.setFill(Color.BLACK);
         opt2.setOpacity(0.5);
     }
 
-    public void onHover3() {
-        text3.setFill(Color.web("#007178"));
-        opt3.setOpacity(0.5);
-    }
-
     public void onHover4() {
-        text4.setFill(Color.web("#007178"));
+        text4.setFill(Color.BLACK);
         opt4.setOpacity(0.5);
     }
+
 
     public void onExited() {
         opt1.setOpacity(1);
         opt2.setOpacity(1);
-        opt3.setOpacity(1);
         opt4.setOpacity(1);
         text1.setFill(Color.WHITE);
         text2.setFill(Color.WHITE);
-        text3.setFill(Color.WHITE);
         text4.setFill(Color.WHITE);
     }
 
@@ -105,8 +99,6 @@ public class Menu {
 
     // ex3: Analysis with streams
 
-    /** START finished methods */
-
     // 3) How many articles come from the source "New York Times"?
     public void countFromSource() {
         String source = "New York Times";
@@ -114,7 +106,6 @@ public class Menu {
             textArea.setText("There's " + ctrl.getCountFromSource(source) + " articles from '" + source + "' in the previously loaded articles.");
 
         } catch(NewsApiException nae) {
-            System.out.println("Exception caught from countFromSource!");
             textArea.setText(nae.getMessage());
         }
 
@@ -126,7 +117,6 @@ public class Menu {
             textArea.setText(ctrl.getTitleLessThan15());
         } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
-            System.out.println("Exception caught from getTitleLessthan15! "); //delete before Abgabe
         }
     }
 
@@ -139,30 +129,29 @@ public class Menu {
             textArea.setText(ctrl.biggestSource());
         } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
-            System.out.println(nae.getMessage());
         }
     }
     public void longestAuthorName() { // check exceptions
         //Which author has the longest name?
         try {
             textArea.setText(ctrl.getLongestAuthorName());
-        } catch (NewsApiException nae) {
+        } catch (NewsApiException | NullPointerException | ArrayIndexOutOfBoundsException nae) {
             textArea.setText(nae.getMessage());
-        } catch (Exception e) { //???
-            System.out.println("caught");
+        } /* catch (Exception e) {
+           System.out.println("caught in e");
             System.out.println(e.getMessage());
-        }
+            System.out.println(e.getCause());
+        }*/
 
     }
 
-    public void streamsAnalysis5() {
+    public void sortByDescription() {
 
         try {
-            textArea.setText(ctrl.streamAnalysis5().toString());
+            textArea.setText(ctrl.sortByDescription().toString());
 
-        } catch (NewsApiException nae) {
+        } catch (NewsApiException | NullPointerException  nae) {
             textArea.setText(nae.getMessage());
-            System.out.println(nae.getMessage()); // comment out before deadline
         }
 
     }
@@ -170,4 +159,3 @@ public class Menu {
 
 
 }
-
