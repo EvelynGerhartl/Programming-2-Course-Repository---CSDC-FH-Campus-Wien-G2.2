@@ -88,12 +88,12 @@ public class AppController {
                     .collect(toList());
 
             if (articles.size() != 0) {
-               // System.out.println("else if != 0");
+                // System.out.println("else if != 0");
                 return "These articles have a title with less than 15 characters:"
                         + System.lineSeparator() + articles.toString();
 
             } else {
-             //   System.out.println("else - articles.size = 0");
+                //   System.out.println("else - articles.size = 0");
                 return "None of the articles have a title with less than 15 characters!";
             }
         }
@@ -109,7 +109,7 @@ public class AppController {
                     .sorted(Comparator.comparingInt(article -> article.getAuthor().length()))
                     .collect(Collectors.toList());
 
-            if(articles.size() < 1) {
+            if (articles.size() < 1) {
                 //Index -1 out of bounds for length 0
                 throw new NewsApiException("It's not possible to get the longest author name in the previously loaded article."
                         + System.lineSeparator() + "Please choose an article and try again.");
@@ -132,13 +132,15 @@ public class AppController {
             Map<String, Long> grouped = articles.stream()
                     .collect(Collectors.groupingBy(Article::getName, Collectors.counting()));
 
-            // after grouping, it takes the "value" (count of articles) and sorts from min to max
-            // (sorted reverse doesn't work for some reason)
-            List<Map.Entry<String, Long>> max = grouped.entrySet()
-                    .stream().sorted(Comparator.comparingLong(Map.Entry::getValue)).toList();
+            // after grouping, it takes the "value" (count of articles) and sorts from min to max and finds the biggest value
+            List<Map.Entry<String, Long>> max = new ArrayList<>();
+            for (Map.Entry<String, Long> stringLongEntry : grouped.entrySet()) {
+                max.add(stringLongEntry);
+            }
+            max.sort(Comparator.comparingLong(Map.Entry::getValue)); //Java replaced stream API chain with loop
 
 
-            if(max.size() < 1) {
+            if (max.size() < 1) {
                 //Index -1 out of bounds for length 0
                 throw new NewsApiException("It's not possible to get the biggest provider of the previously loaded article."
                         + System.lineSeparator() + "Please choose an article and try again.");
@@ -150,11 +152,7 @@ public class AppController {
                 return "'" + biggestProvider + "'" + " is the provider with more articles, with " + articleCount + " articles.";
 
             }
-
-
-
         }
-
     }
 
 
@@ -163,7 +161,6 @@ public class AppController {
     List<Article> sortByDescription() throws NewsApiException {
 
         if (articles == null || articles.isEmpty()) {
-           // System.out.println("caught at 5th analysis"); //comment out before deadline
             throw new NewsApiException("Hey there! Please choose an article option before sorting by length.");
 
         } else {

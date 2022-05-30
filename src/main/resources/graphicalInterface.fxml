@@ -54,7 +54,7 @@
             <Font name="SansSerif Regular" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="619.0" layoutY="489.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#streamsAnalysis1" prefHeight="30.0" prefWidth="200.0" text="Source with most articles" />
+      <Button layoutX="619.0" layoutY="489.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#biggestSource" prefHeight="30.0" prefWidth="200.0" text="Source with most articles" />
       <Button layoutX="620.0" layoutY="528.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#longestAuthorName" prefHeight="30.0" prefWidth="200.0" text="Longest author name" />
       <Button layoutX="400.0" layoutY="528.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#countFromSource" prefHeight="30.0" prefWidth="200.0" text="Articles from NY Times only" />
       <Button layoutX="400.0" layoutY="489.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#titleLessThan15" prefHeight="30.0" prefWidth="200.0" text="Title smaller than 15 characters" />

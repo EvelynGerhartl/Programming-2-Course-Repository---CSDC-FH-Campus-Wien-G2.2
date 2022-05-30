@@ -7,11 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
 
 
 public class Menu {
@@ -20,8 +17,6 @@ public class Menu {
     public Text noInternet;
     private AppController ctrl = new AppController();
     private static final String EXIT_MESSAGE = "Bye Bye!";
-    //private static final String INVALID_INPUT_MESSAGE = "Invalid input message. Please, try again!";
-    //there´s no input in ex2 (javafx)
 
     @FXML
     public Text text1;
@@ -60,7 +55,7 @@ public class Menu {
         try {
             checkInternetConnection();
             internet(); //set visibility to false on "no internet" warning
-        } catch(NewsApiException nae) {
+        } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
         }
         getTopHeadlinesAustria(ctrl);
@@ -70,7 +65,7 @@ public class Menu {
         try {
             checkInternetConnection();
             internet(); //set visibility to false on "no internet" warning
-        } catch(NewsApiException nae) {
+        } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
         }
         getAllNewsBitcoin(ctrl);
@@ -113,9 +108,6 @@ public class Menu {
     }
 
 
-
-
-
     // ex3: Analysis with streams
 
     // 3) How many articles come from the source "New York Times"?
@@ -124,7 +116,7 @@ public class Menu {
         try {
             textArea.setText("There's " + ctrl.getCountFromSource(source) + " articles from '" + source + "' in the previously loaded articles.");
 
-        } catch(NewsApiException nae) {
+        } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
         }
 
@@ -139,10 +131,8 @@ public class Menu {
         }
     }
 
-    /** END finished methods */
 
-
-    public void streamsAnalysis1(){
+    public void biggestSource() {
         //Which provider (= source) delivers the most articles?
         try {
             textArea.setText(ctrl.biggestSource());
@@ -150,18 +140,14 @@ public class Menu {
             textArea.setText(nae.getMessage());
         }
     }
+
     public void longestAuthorName() { // check exceptions
         //Which author has the longest name?
         try {
             textArea.setText(ctrl.getLongestAuthorName());
         } catch (NewsApiException | NullPointerException | ArrayIndexOutOfBoundsException nae) {
             textArea.setText(nae.getMessage());
-        } /* catch (Exception e) {
-           System.out.println("caught in e");
-            System.out.println(e.getMessage());
-            System.out.println(e.getCause());
-        }*/
-
+        }
     }
 
     public void sortByDescription() {
@@ -169,14 +155,13 @@ public class Menu {
         try {
             textArea.setText(ctrl.sortByDescription().toString());
 
-        } catch (NewsApiException | NullPointerException  nae) {
+        } catch (NewsApiException | NullPointerException nae) {
             textArea.setText(nae.getMessage());
         }
-
     }
 
 
-    void checkInternetConnection() throws  NewsApiException{
+    void checkInternetConnection() throws NewsApiException {
 
         try {
             URL urlToCheck = new URL("http://www.google.com");

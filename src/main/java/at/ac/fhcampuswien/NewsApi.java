@@ -50,85 +50,14 @@ public class NewsApi {
     }
 
 
-    /** Feedback: change that it gets the last possible count (bitcoin or top headlines)
+    /**
+     * Feedback: change that it gets the last possible count (bitcoin or top headlines)
      * Solution: changed that get the news returns a List<Article> (not string).
      * getArticleCount in AppController works without any extra totalResults method.
-     *
+     * <p>
      * Feedback: "format" crowding NewsApi... better to have it in AppController
      * Solution: StringBuilder/Format is now in AppController
-     * */
-    /*
-      public int totalResults() {
-
-        String url = urlMaker("corona", "at", false);
-        String json = null;
-        try {
-            json = run(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json, NewsResponse.class);
-        return news.getTotalResults();
-    }
-
-*/
-    /*
-    public String getTheNews(String query, String country, boolean trueForTopHeadlinesOnly) {
-        String url = urlMaker(query, country, trueForTopHeadlinesOnly); //builds the url according to the parameters
-
-        String json = null;
-        try {
-            json = run(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        // "translating json to gson"
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json, NewsResponse.class);
-
-
-        // String Builder to build whatever "format" we need.
-        StringBuilder sb = new StringBuilder();
-
-        /** change the "format" to make it better, less crowded
-         * better to have it in AppController */
-/*
-        //"format" of only Top Headlines
-        if (trueForTopHeadlinesOnly) {
-            for (int i = 0; i < 10; i++) {          // maximum 10 articles
-                sb.append(">> ");
-                sb.append(news.getArticles().get(i).getTitle());
-                sb.append(System.lineSeparator()).append("Read more: ").append(news.getArticles().get(i).getUrl());
-                sb.append(System.lineSeparator());
-                sb.append("***************************************************************************************************");
-                sb.append(System.lineSeparator());
-            }
-
-
-        } else { //format of "all news" - used in "get all news bitcoin" (content, author, etc, etc)
-
-            if (news.getTotalResults() >= 3) {
-                // if there´s more than 3 articles of the specific query, we only want to display 3
-                sb.append(news.getArticles().get(0));
-                sb.append(news.getArticles().get(1));
-                sb.append(news.getArticles().get(2));
-
-            } else {
-                for (int i = 0; i < totalResults(); i++) {
-                    //if the number of articles(total results) is smaller than 3, we only want the amount there is
-                    sb.append(news.getArticles().get(i));
-                }
-            }
-        }
-        return sb.toString();
-        // depending on which "if" statement was done, sb will either have the Top Headlines, whole news, etc, etc
-        // toString() because we needed for our TextArea (gui)
-    }
-
-*/
+     */
 
 
     public List<Article> getTheNews(String query, String country, boolean trueForTopHeadlinesOnly) throws NewsApiException {
@@ -146,17 +75,11 @@ public class NewsApi {
         try {
             Gson gson = new Gson();
             NewsResponse news = gson.fromJson(json, NewsResponse.class);
-            return news.getArticles(); }
-
-        catch (Exception e) { // // giuli's comment: fourth
-          //  System.out.println("There's no internet connection! Please check your connection and try again!");
+            return news.getArticles();
+        } catch (Exception e) {             // giuli's comment: fourth
+            //  System.out.println("There's no internet connection! Please check your connection and try again!");
         }
         return Collections.emptyList();
 
     }
-
-
-
-
-
 }

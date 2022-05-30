@@ -33,10 +33,6 @@ public class Article {
         return getAuthor().length();
     }
 
-    //public int getAuthorLength() {
-     //   return getAuthor().length();
-   // }
-
     public String getTitle() {
         return title;
     }
@@ -69,17 +65,16 @@ public class Article {
 
     @Override
     public String toString() {
-        return  ">> " + getTitle() + " <<" + System.lineSeparator() +
+        return ">> " + getTitle() + " <<" + System.lineSeparator() +
                 "(Published by " + getAuthor() + ", on " + getPublishedAt() + ")" + System.lineSeparator() +
                 "Description: " + getDescription() + System.lineSeparator() +
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 getContent() + System.lineSeparator() + System.lineSeparator() +
                 "Copy the link to read more on their website: " + getUrl() + System.lineSeparator() +
                 "****************************************************************************************************"
-               // + System.lineSeparator() +"Description length: " + getDescriptionLength()
+                // + System.lineSeparator() +"Description length: " + getDescriptionLength()
                 + System.lineSeparator() + System.lineSeparator();
     }
-
 
 
     public Source getSource() {
