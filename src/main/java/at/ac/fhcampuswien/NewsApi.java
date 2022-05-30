@@ -1,11 +1,17 @@
 package at.ac.fhcampuswien;
 
 import com.google.gson.Gson;
+import javafx.fxml.FXML;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,13 +37,15 @@ public class NewsApi {
     //okhttp
     OkHttpClient client = new OkHttpClient();
 
-    public String run(String url) throws IOException {
+    public String run(String url) throws IOException, NewsApiException {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             return Objects.requireNonNull(response.body()).string();
+        } catch (IOException | NullPointerException e) {
+            throw new NewsApiException(""); // giuli's comment: second
         }
     }
 
@@ -123,23 +131,32 @@ public class NewsApi {
 */
 
 
-    public List<Article> getTheNews(String query, String country, boolean trueForTopHeadlinesOnly) {
+    public List<Article> getTheNews(String query, String country, boolean trueForTopHeadlinesOnly) throws NewsApiException {
         String url = urlMaker(query, country, trueForTopHeadlinesOnly); //builds the url according to the parameters
 
         String json = null;
         try {
             json = run(url);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NewsApiException | NullPointerException e) {  // giuli's comment: third
+            System.out.println("");
         }
 
 
         // "translating json to gson"
-        Gson gson = new Gson();
-        NewsResponse news = gson.fromJson(json, NewsResponse.class);
+        try {
+            Gson gson = new Gson();
+            NewsResponse news = gson.fromJson(json, NewsResponse.class);
+            return news.getArticles(); }
 
+        catch (Exception e) { // // giuli's comment: fourth
+          //  System.out.println("There's no internet connection! Please check your connection and try again!");
+        }
+        return Collections.emptyList();
 
-        return news.getArticles();
     }
+
+
+
+
 
 }

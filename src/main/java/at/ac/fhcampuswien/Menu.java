@@ -7,10 +7,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.UnknownHostException;
+
 
 public class Menu {
 
     public ImageView newsImage;
+    public Text noInternet;
     private AppController ctrl = new AppController();
     private static final String EXIT_MESSAGE = "Bye Bye!";
     //private static final String INVALID_INPUT_MESSAGE = "Invalid input message. Please, try again!";
@@ -33,12 +40,12 @@ public class Menu {
         textArea.setText(" Number of articles: " + ctrl.getArticleCount());
     }
 
-    private void getTopHeadlinesAustria(AppController ctrl) {
+    private void getTopHeadlinesAustria(AppController ctrl) throws NewsApiException {
         textArea.setText(ctrl.getTopHeadlinesAustria());
 
     }
 
-    private void getAllNewsBitcoin(AppController ctrl) {
+    private void getAllNewsBitcoin(AppController ctrl) throws NewsApiException {
         textArea.setText(ctrl.getAllNewsBitcoin());
     }
 
@@ -49,11 +56,23 @@ public class Menu {
     }
 
 
-    public void clickedA() {
+    public void clickedA() throws NewsApiException {
+        try {
+            checkInternetConnection();
+            internet(); //set visibility to false on "no internet" warning
+        } catch(NewsApiException nae) {
+            textArea.setText(nae.getMessage());
+        }
         getTopHeadlinesAustria(ctrl);
     }
 
-    public void clickedB() {
+    public void clickedB() throws NewsApiException {
+        try {
+            checkInternetConnection();
+            internet(); //set visibility to false on "no internet" warning
+        } catch(NewsApiException nae) {
+            textArea.setText(nae.getMessage());
+        }
         getAllNewsBitcoin(ctrl);
     }
 
@@ -69,33 +88,27 @@ public class Menu {
 
 
     public void onHover1() {
-        text1.setFill(Color.web("#007178"));
+        text1.setFill(Color.BLACK);
         opt1.setOpacity(0.5);
     }
 
     public void onHover2() {
-        text2.setFill(Color.web("#007178"));
+        text2.setFill(Color.BLACK);
         opt2.setOpacity(0.5);
     }
 
-    public void onHover3() {
-        text3.setFill(Color.web("#007178"));
-        opt3.setOpacity(0.5);
-    }
-
     public void onHover4() {
-        text4.setFill(Color.web("#007178"));
+        text4.setFill(Color.BLACK);
         opt4.setOpacity(0.5);
     }
+
 
     public void onExited() {
         opt1.setOpacity(1);
         opt2.setOpacity(1);
-        opt3.setOpacity(1);
         opt4.setOpacity(1);
         text1.setFill(Color.WHITE);
         text2.setFill(Color.WHITE);
-        text3.setFill(Color.WHITE);
         text4.setFill(Color.WHITE);
     }
 
@@ -105,8 +118,6 @@ public class Menu {
 
     // ex3: Analysis with streams
 
-    /** START finished methods */
-
     // 3) How many articles come from the source "New York Times"?
     public void countFromSource() {
         String source = "New York Times";
@@ -114,7 +125,6 @@ public class Menu {
             textArea.setText("There's " + ctrl.getCountFromSource(source) + " articles from '" + source + "' in the previously loaded articles.");
 
         } catch(NewsApiException nae) {
-            System.out.println("Exception caught from countFromSource!");
             textArea.setText(nae.getMessage());
         }
 
@@ -126,48 +136,68 @@ public class Menu {
             textArea.setText(ctrl.getTitleLessThan15());
         } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
-            System.out.println("Exception caught from getTitleLessthan15! "); //delete before Abgabe
         }
     }
 
     /** END finished methods */
 
 
-    public void streamsAnalysis1() {
+    public void streamsAnalysis1(){
         //Which provider (= source) delivers the most articles?
         try {
             textArea.setText(ctrl.biggestSource());
         } catch (NewsApiException nae) {
             textArea.setText(nae.getMessage());
-            System.out.println(nae.getMessage());
         }
     }
-    public void streamsAnalysis2() throws NewsApiException {
+    public void longestAuthorName() { // check exceptions
         //Which author has the longest name?
         try {
-            ctrl.longestAuthorName();
-            textArea.setText(ctrl.longestAuthorName().toString());
-        } catch (NewsApiException nae) {
+            textArea.setText(ctrl.getLongestAuthorName());
+        } catch (NewsApiException | NullPointerException | ArrayIndexOutOfBoundsException nae) {
             textArea.setText(nae.getMessage());
-        //} catch (NullPointerException npe) {
-         //   throw new NewsApiException();
-        }
+        } /* catch (Exception e) {
+           System.out.println("caught in e");
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+        }*/
 
     }
 
-    public void streamsAnalysis5() {
+    public void sortByDescription() {
 
         try {
-            textArea.setText(ctrl.streamAnalysis5().toString());
+            textArea.setText(ctrl.sortByDescription().toString());
 
-        } catch (NewsApiException nae) {
+        } catch (NewsApiException | NullPointerException  nae) {
             textArea.setText(nae.getMessage());
-            System.out.println(nae.getMessage()); // comment out before deadline
         }
 
     }
 
 
+    void checkInternetConnection() throws  NewsApiException{
+
+        try {
+            URL urlToCheck = new URL("http://www.google.com");
+            URLConnection connection = urlToCheck.openConnection();
+            connection.connect();
+            textArea.setText("Internet is connected");
+
+        } catch (Exception e) { //first
+            noInternet();
+            throw new NewsApiException(""); // // giuli's comment: first
+        }
+
+    }
+
+    void noInternet() {
+        noInternet.setVisible(true);
+    }
+
+    void internet() {
+        noInternet.setVisible(false);
+    }
 
 }
 

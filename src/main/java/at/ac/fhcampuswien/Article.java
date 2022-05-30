@@ -46,7 +46,7 @@ public class Article {
     }
 
     public int getDescriptionLength() {
-        return description.length();
+        return getDescription().length();
     }
 
     public String getUrl() {
@@ -69,15 +69,14 @@ public class Article {
 
     @Override
     public String toString() {
-        return ">> " + getTitle() + " <<" + System.lineSeparator() +
+        return  ">> " + getTitle() + " <<" + System.lineSeparator() +
                 "(Published by " + getAuthor() + ", on " + getPublishedAt() + ")" + System.lineSeparator() +
-                //   "Description length: " + getDescriptionLength() +
                 "Description: " + getDescription() + System.lineSeparator() +
                 //"UrlToImage: " + this.urlToImage + System.lineSeparator() +
                 getContent() + System.lineSeparator() + System.lineSeparator() +
                 "Copy the link to read more on their website: " + getUrl() + System.lineSeparator() +
-                "Source: " + getName() +
                 "****************************************************************************************************"
+               // + System.lineSeparator() +"Description length: " + getDescriptionLength()
                 + System.lineSeparator() + System.lineSeparator();
     }
 

@@ -13,68 +13,71 @@
     <children>
         <ImageView fitHeight="625.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@background.png" />
+            <Image url="@background2.png" />
          </image></ImageView>
-        <ImageView fx:id="opt1" fitHeight="46.0" fitWidth="300.0" layoutX="182.0" layoutY="157.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
+      <TextArea fx:id="textArea" editable="false" layoutX="73.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="854.0" style="-fx-font-size: 14; -fx-background-color: ffffff;" wrapText="true">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextArea>
+        <ImageView fx:id="opt1" fitHeight="50.0" fitWidth="380.0" layoutX="100.0" layoutY="84.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@button3.png" />
          </image></ImageView>
-      <ImageView fx:id="opt2" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="157.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="opt2" fitHeight="50.0" fitWidth="380.0" layoutX="500.0" layoutY="84.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@button3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="opt3" fitHeight="46.0" fitWidth="300.0" layoutX="182.0" layoutY="191.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="opt4" fitHeight="38.0" fitWidth="110.0" layoutX="6.0" layoutY="407.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
          <image>
-            <Image url="@button3.png" />
+            <Image url="@button2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="opt4" fitHeight="46.0" fitWidth="300.0" layoutX="516.0" layoutY="191.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@button3.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="text1" fill="WHITE" layoutX="179.0" layoutY="178.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="   Get the top headlines for Austria" textAlignment="CENTER" wrappingWidth="300.0">
+      <Text fx:id="text1" fill="WHITE" layoutX="140.0" layoutY="105.0" onMouseClicked="#clickedA" onMouseEntered="#onHover1" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Get the top headlines for Austria" textAlignment="CENTER" wrappingWidth="300.0">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="text4" fill="WHITE" layoutX="576.0" layoutY="211.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="    Quit program" textAlignment="CENTER" wrappingWidth="149.42227172851562">
+      <Text fx:id="text4" fill="WHITE" layoutX="11.0" layoutY="420.0" onMouseClicked="#clickedQ" onMouseEntered="#onHover4" onMouseExited="#onExited" rotate="-90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quit program" textAlignment="CENTER" wrappingWidth="99.02224731445312">
+         <font>
+            <Font name="SansSerif Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="text2" fill="WHITE" layoutX="549.0" layoutY="105.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Get all the news about Bitcoin" textAlignment="CENTER" wrappingWidth="280.00006103515625">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="text2" fill="WHITE" layoutX="526.0" layoutY="178.0" onMouseClicked="#clickedB" onMouseEntered="#onHover2" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="    Get all the news about Bitcoin" textAlignment="CENTER" wrappingWidth="280.00006103515625">
-         <font>
-            <Font name="SansSerif Regular" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="welcomeText" layoutX="160.0" layoutY="133.0" lineSpacing="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME" wrappingWidth="677.3367767333984">
-         <font>
-            <Font name="SansSerif Regular" size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="text3" fill="WHITE" layoutX="192.0" layoutY="211.0" onMouseClicked="#clickedY" onMouseEntered="#onHover3" onMouseExited="#onExited" strokeType="OUTSIDE" strokeWidth="0.0" text="Count articles" textAlignment="CENTER" wrappingWidth="280.00006103515625">
-         <font>
-            <Font name="SansSerif Regular" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="TextBox" layoutX="168.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="618.4" />
       <Text fx:id="bigText" fill="WHITE" layoutX="248.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bye, bye!" textAlignment="CENTER" visible="false" wrappingWidth="464.5367431640625">
          <font>
             <Font name="SansSerif Regular" size="72.0" />
          </font>
       </Text>
-      <TextArea fx:id="textArea" editable="false" layoutX="182.0" layoutY="227.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="634.0" style="-fx-font-size: 14; -fx-background-color: ffffff;" wrapText="true">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </TextArea>
-      <ImageView fx:id="newsImage" fitHeight="150.0" fitWidth="150.0" layoutX="18.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="297.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#streamsAnalysis1" text="1 provider" />
-      <Button layoutX="384.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#streamsAnalysis2" text="2 author" />
-      <Button layoutX="466.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#countFromSource" text="3 NY Times" />
-      <Button layoutX="565.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#titleLessThan15" text="4 title &lt;15" />
-      <Button layoutX="651.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#streamsAnalysis5" text="5 sorty by length" />
+      <Button layoutX="619.0" layoutY="489.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#streamsAnalysis1" prefHeight="30.0" prefWidth="200.0" text="Source with most articles" />
+      <Button layoutX="620.0" layoutY="528.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#longestAuthorName" prefHeight="30.0" prefWidth="200.0" text="Longest author name" />
+      <Button layoutX="400.0" layoutY="528.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#countFromSource" prefHeight="30.0" prefWidth="200.0" text="Articles from NY Times only" />
+      <Button layoutX="400.0" layoutY="489.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#titleLessThan15" prefHeight="30.0" prefWidth="200.0" text="Title smaller than 15 characters" />
+      <Button layoutX="181.0" layoutY="528.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#sortByDescription" prefHeight="30.0" prefWidth="200.0" text="Sort articles by description size" />
+      <Text fx:id="TextBox" layoutX="75.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&gt;&gt;" wrappingWidth="72.80003356933594">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font></Text>
+      <ImageView fitHeight="95.0" fitWidth="326.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@title.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="181.0" layoutY="489.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#clickedY" prefHeight="30.0" prefWidth="200.0" text="Count articles" />
+      <Text fx:id="TextBox1" layoutX="852.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;&lt;" textAlignment="RIGHT" wrappingWidth="72.80003356933594">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="noInternet" fill="RED" layoutX="219.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It seems like you're not connected to the internet! Please check your connection and try again!" visible="false" wrappingWidth="561.9831790924072">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

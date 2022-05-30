@@ -4,13 +4,21 @@ public class NewsApiException extends Exception{
 
     NewsApiException(String message) {
         super(message);
-        System.out.println(getMessage()); //change before pushing
+        //System.out.println(getMessage()); //change before pushing
 
     }
     NewsApiException() {
-        super("Article is null");
+        super("There's seem to be an error! Please try again.");
 
     }
+
+
+/*
+    NewsApiException(String message, Error error) { //?
+        super(message);
+        message= message + System.lineSeparator() +"("+ error.getMessage() + ")";
+    }*/
+
 }
 
 

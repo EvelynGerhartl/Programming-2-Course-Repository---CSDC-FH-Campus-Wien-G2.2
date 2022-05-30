@@ -11,7 +11,10 @@ import javafx.stage.Stage;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class App extends Application {
     @FXML
@@ -31,6 +34,9 @@ public class App extends Application {
         stage.setResizable(false);
 
         stage.show();
+
+
+        // Menu menu = new Menu(); menu.checkInternetConnection();
 
     }
 
