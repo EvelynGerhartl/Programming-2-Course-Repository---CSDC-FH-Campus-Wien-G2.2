@@ -3,8 +3,9 @@ package at.ac.fhcampuswien;
 import at.ac.fhcampuswien.ui.Menu;
 
 public class App {
+    private static Menu menu;
     public static void main(String[] args) {
-        Menu menu = new Menu();
+        menu=menu.getInstance();
         menu.start();
     }
 }
