@@ -15,7 +15,7 @@ public class Menu {
 
     public void start(){
         String input;
-        controller = new AppController();
+        controller = controller.getInstance();
 
         do{
             printMenu();
