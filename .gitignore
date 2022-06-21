@@ -15,4 +15,4 @@
 log/
 target/
 
-.env
+../../../04_PROGR/prg2-exercise-3-solution/.env
