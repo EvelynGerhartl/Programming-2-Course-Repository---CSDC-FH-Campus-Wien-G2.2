@@ -2,18 +2,23 @@ package at.ac.fhcampuswien.controllers;
 
 import at.ac.fhcampuswien.api.NewsApi;
 import at.ac.fhcampuswien.downloader.Downloader;
+import at.ac.fhcampuswien.enums.Category;
 import at.ac.fhcampuswien.enums.Country;
 import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import at.ac.fhcampuswien.models.Source;
 
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AppController {
-    private List<Article> articles;
     private static AppController instance;
+    private List<Article> articles;
 
     private AppController() {}
 
@@ -23,12 +28,28 @@ public class AppController {
         return instance;
     }
 
-    public void setArticles(List<Article> articles){
-        this.articles = articles;
+    /**
+     * filters a given article list based on a query
+     * @param query to filter by
+     * @param articles  list to filter
+     * @return filtered list
+     */
+    private static List<Article> filterList(String query, List<Article> articles){
+        List<Article> filtered = new ArrayList<>();
+        for(Article i : articles){
+            if(i.getTitle().toLowerCase().contains(query)){
+                filtered.add(i);
+            }
+        }
+        return filtered;
     }
 
     public List<Article> getArticles(){
         return articles;
+    }
+
+    public void setArticles(List<Article> articles){
+        this.articles = articles;
     }
 
     // Method is needed for exercise 4 - ignore for exercise 3 solution
@@ -68,13 +89,32 @@ public class AppController {
         try {
             NewsResponse response = api.requestData();
             articles = response.getArticles();
-        } catch (NewsAPIException e){
+        } catch (NewsAPIException | IOException e){
             System.out.println("An error occurred while fetching articles: " + e.getMessage());
         }
 
         return articles;
-    }
 
+    }
+    //**************************BUILDER************************************ Anfang
+    /*NewsApi api = new NewsApi.Builder()
+
+            .endpoint(Endpoint.TOP_HEADLINES)
+            .q("a")
+            .qInTitle()
+            .sourceCountry()
+            .sourceCategory()
+            .domains()
+            .excludeDomains()
+            .from()
+            .to()
+            .language()
+            .sortBy()
+            .pageSize()
+            .page()
+            .build();
+*/
+//************************************ BUILDER ****************************** Ende
     /**
      * returns all articles that do contain "bitcoin"
      * in their title from newsapi
@@ -86,12 +126,33 @@ public class AppController {
         try {
             NewsResponse response = api.requestData();
             articles = response.getArticles();
-        } catch (NewsAPIException e){
+        } catch (NewsAPIException | IOException e){
             System.out.println("An error occurred while fetching articles: " + e.getMessage());
         }
 
         return articles;
     }
+
+//************************************ BUILDER ****************************** Ende
+/*        NewsApi newsApi = new NewsApi.Builder()
+
+                .endpoint(Endpoint.EVERYTHING)
+                .q("bitcoin")
+                .qInTitle()
+                .sourceCountry()
+                .sourceCategory()
+                .domains()
+                .excludeDomains()
+                .from()
+                .to()
+                .language()
+                .sortBy()
+                .pageSize()
+                .page()
+                .build();
+        */
+//************************************ BUILDER ****************************** Ende
+
 
     public String getProviderWithMostArticles() throws NewsAPIException {
         if(articles == null)
@@ -158,22 +219,6 @@ public class AppController {
                 })
                 .collect(Collectors.toList());
         */
-    }
-
-    /**
-     * filters a given article list based on a query
-     * @param query to filter by
-     * @param articles  list to filter
-     * @return filtered list
-     */
-    private static List<Article> filterList(String query, List<Article> articles){
-        List<Article> filtered = new ArrayList<>();
-        for(Article i : articles){
-            if(i.getTitle().toLowerCase().contains(query)){
-                filtered.add(i);
-            }
-        }
-        return filtered;
     }
 
 
