@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.api;
 
 import at.ac.fhcampuswien.controllers.NewsAPIException;
 import at.ac.fhcampuswien.enums.*;
+import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -19,8 +20,8 @@ public class NewsApi {
     private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
     private OkHttpClient client;
 
-    private Endpoint endpoint;
-    private String q;
+    private final Endpoint endpoint;
+    private final String q;
     private String qInTitle;
     private Country sourceCountry;
     private Category sourceCategory;
@@ -33,6 +34,112 @@ public class NewsApi {
     private String pageSize;
     private String page;
 
+    //implement builder = creational pattern
+//************************************ B U I L D E R ****************************** ANFANG
+
+  /*  private NewsApi(Builder builder) { // builder is passed to constructor of News API
+
+        this.endpoint = builder.endpoint;
+        this.q = builder.q;
+        this.qInTitle = builder.qInTitle;
+        this.sourceCountry = builder.sourceCountry;
+        this.sourceCategory = builder.sourceCategory;
+        this.domains = builder.domains;
+        this.excludeDomains = builder.excludeDomains;
+        this.from = builder.from;
+        this.to = builder.to;
+        this.language = builder.language;
+        this.sortBy = builder.sortBy;
+        this.pageSize = builder.pageSize;
+        this.page = builder.page;
+
+    }
+
+    // nested class inside NewsApi
+    public static class Builder {
+       *//* public static final String DELIMITER = "&";
+        private static final String URL = "https://newsapi.org/v2/%s?q=%s&apiKey=%s";
+        private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
+        private OkHttpClient client;*//*
+
+        private Endpoint endpoint;
+        private String q;
+        private String qInTitle;
+        private Country sourceCountry;
+        private Category sourceCategory;
+        private String domains;
+        private String excludeDomains;
+        private String from;
+        private String to;
+        private Language language;
+        private SortBy sortBy;
+        private String pageSize;
+        private String page;
+
+
+        //each function returns itself..
+        public Builder endpoint(Endpoint endpoint) {
+            this.endpoint = endpoint;
+            return this;
+        }
+
+        public Builder q(String q) {
+            this.q = q;
+            return this;
+        }
+
+        public Builder qInTitle(String qInTitle) {
+            this.qInTitle = qInTitle;
+            return this;
+        }
+
+        public Builder sourceCountry(Country sourceCountry) {
+            this.sourceCountry = sourceCountry;
+            return this;
+        }
+
+        public Builder sourceCategory(Category sourceCategory) {
+            this.sourceCategory = sourceCategory;
+            return this;
+        }
+
+        public Builder domains(String domains) {
+            this.domains = domains;
+            return this;
+        }
+
+        public Builder excludeDomains(String excludeDomains) {
+            this.excludeDomains = excludeDomains;
+            return this;
+        }
+
+        public Builder from(String from) {
+            this.from = from;
+            return this;
+        }
+
+        public Builder to(String to) {
+            this.to = to;
+            return this;
+        }
+*/
+        /*NewsApi newsApi = new NewsApi.Builder()
+
+            .endpoint()
+            .q()
+            .qInTitle()
+            .sourceCountry()
+            .domains()
+            .excludeDomains()
+            .from()
+            .to()
+            .language()
+            .sortBy()
+            .pageSize()
+            .page()
+            .build();
+*/
+//************************************ B U I L D E R ****************************** ENDE
 
     public String getQ() {
         return q;
@@ -155,7 +262,7 @@ public class NewsApi {
         return sb.toString();
     }
 
-    public NewsResponse requestData() throws NewsAPIException {
+    public NewsResponse requestData() throws NewsAPIException, IOException {
         String url = buildUrl();
 
         Request request = new Request.Builder()
