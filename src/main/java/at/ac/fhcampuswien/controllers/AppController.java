@@ -6,6 +6,7 @@ import at.ac.fhcampuswien.enums.*;
 import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import at.ac.fhcampuswien.models.Source;
+import okhttp3.OkHttpClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -83,6 +84,22 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() {
         NewsApi api = new NewsApi.Builder()
+               // .client(new OkHttpClient()) to be fixed
+                .endpoint(Endpoint.TOP_HEADLINES)
+                .q("a")
+                .qInTitle("")
+                .sourceCountry(Country.at)
+                .sourceCategory(Category.entertainment)
+                .domains("")
+                .excludeDomains("")
+                .from("")
+                .to("")
+                .language(Language.en)
+                .sortBy(SortBy.PUBLISHED)
+                .pageSize("")
+                .page("")
+                .build();
+
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
@@ -96,22 +113,7 @@ public class AppController {
     }
 
     //**************************BUILDER************************************ Anfang
-    NewsApi api = new NewsApi.Builder()
 
-            .endpoint(Endpoint.TOP_HEADLINES)
-            .q("a")
-            .qInTitle("")
-            .sourceCountry(Country.at)
-            .sourceCategory(Category.entertainment)
-            .domains("")
-            .excludeDomains("")
-            .from("")
-            .to("")
-            .language(Language.en)
-            .sortBy(SortBy.PUBLISHED)
-            .pageSize("")
-            .page("")
-            .build();
 
 //************************************ BUILDER ****************************** Ende
 
@@ -123,6 +125,20 @@ public class AppController {
      */
     public List<Article> getAllNewsBitcoin() {
         NewsApi api = new NewsApi.Builder()
+                .endpoint(Endpoint.EVERYTHING)
+                .q("bitcoin")
+                .qInTitle("")
+                .sourceCountry(Country.at)
+                .sourceCategory(Category.business)
+                .domains("")
+                .excludeDomains("")
+                .from("")
+                .to("")
+                .language(Language.en)
+                .sortBy(SortBy.PUBLISHED)
+                .pageSize("")
+                .page("")
+                .build();
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
@@ -134,25 +150,7 @@ public class AppController {
         return articles;
     }
 
-    //************************************ BUILDER ****************************** Ende
-    NewsApi api = new NewsApi.Builder()
 
-            .endpoint(Endpoint.EVERYTHING)
-            .q("a")
-            .qInTitle("")
-            .sourceCountry(Country.at)
-            .sourceCategory(Category.entertainment)
-            .domains("")
-            .excludeDomains("")
-            .from("")
-            .to("")
-            .language(Language.en)
-            .sortBy(SortBy.PUBLISHED)
-            .pageSize("")
-            .page("")
-                .build();
-
-//************************************ BUILDER ****************************** Ende
 
 
     public String getProviderWithMostArticles() throws NewsAPIException {
