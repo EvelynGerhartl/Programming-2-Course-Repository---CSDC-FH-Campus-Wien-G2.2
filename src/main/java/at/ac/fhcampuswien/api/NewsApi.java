@@ -34,8 +34,6 @@ public class NewsApi {
     private String pageSize;
     private String page;
 
-    //implement builder = creational pattern
-//************************************ B U I L D E R ****************************** ANFANG
 
     public NewsApi(Builder builder) { // builder is passed to constructor of News API
 
@@ -78,6 +76,12 @@ public class NewsApi {
 
 
         //each function returns itself..
+
+        public Builder client(OkHttpClient client) { // to be fixed!
+           this.client = client;
+           return this;
+        }
+
         public Builder endpoint(Endpoint endpoint) {
             this.endpoint = endpoint;
             return this;
@@ -142,6 +146,8 @@ public class NewsApi {
         public NewsApi build(){
             return new NewsApi(this);
         }
+
+
     }
 
 //************************************ B U I L D E R ****************************** ENDE
