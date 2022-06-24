@@ -18,20 +18,21 @@ public class NewsApi {
     public static final String DELIMITER = "&";
     private static final String URL = "https://newsapi.org/v2/%s?q=%s&apiKey=%s";
     private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
-    private OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client;
+
     private final Endpoint endpoint;
     private final String q;
-    private final String qInTitle;
-    private final Country sourceCountry;
-    private final Category sourceCategory;
-    private final String domains;
-    private final String excludeDomains;
-    private final String from;
-    private final String to;
-    private final Language language;
-    private final SortBy sortBy;
-    private final String pageSize;
-    private final String page;
+    private String qInTitle;
+    private Country sourceCountry;
+    private Category sourceCategory;
+    private String domains;
+    private String excludeDomains;
+    private String from;
+    private String to;
+    private Language language;
+    private SortBy sortBy;
+    private String pageSize;
+    private String page;
 
 
     public NewsApi(Builder builder) { // builder is passed to constructor of News API
@@ -57,6 +58,7 @@ public class NewsApi {
         public static final String DELIMITER = "&";
         private static final String URL = "https://newsapi.org/v2/%s?q=%s&apiKey=%s";
         private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
+        private OkHttpClient client;
 
         private Endpoint endpoint;
         private String q;
@@ -74,6 +76,11 @@ public class NewsApi {
 
 
         //each function returns itself..
+
+        public Builder client(OkHttpClient client) { // to be fixed!
+           this.client = client;
+           return this;
+        }
 
         public Builder endpoint(Endpoint endpoint) {
             this.endpoint = endpoint;
@@ -277,17 +284,15 @@ public class NewsApi {
             Gson gson = new Gson();
             NewsResponse apiResponse = gson.fromJson(Objects.requireNonNull(response.body()).string(), NewsResponse.class); // parse the json response to NewsResponse
 
-            if (apiResponse.getStatus().equals("ok")) {   // http status code ok - 200
+            if(apiResponse.getStatus().equals("ok")){   // http status code ok - 200
                 return apiResponse;
             } else {
                 throw new NewsAPIException(this.getClass() + ": http status not ok. Status is: " + apiResponse.getStatus());
             }
-        } catch (JsonSyntaxException e) {
+        } catch (JsonSyntaxException e){
             throw new NewsAPIException(this.getClass() + ": problems when parsing JSON response");
         } catch (IOException e) {
             throw new NewsAPIException(e.getMessage());
-        } catch (Exception e) {
-            throw new NewsAPIException();
         }
     }
 }
