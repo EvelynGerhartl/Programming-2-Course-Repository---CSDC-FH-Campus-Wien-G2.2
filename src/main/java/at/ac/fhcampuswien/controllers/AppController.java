@@ -84,11 +84,20 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() {
         NewsApi api = new NewsApi.Builder()
+               // .client(new OkHttpClient()) to be fixed
                 .endpoint(Endpoint.TOP_HEADLINES)
                 .q("a")
+                .qInTitle("")
                 .sourceCountry(Country.at)
                 .sourceCategory(Category.entertainment)
-                .language(Language.de)
+                .domains("")
+                .excludeDomains("")
+                .from("")
+                .to("")
+                .language(Language.en)
+                .sortBy(SortBy.PUBLISHED)
+                .pageSize("")
+                .page("")
                 .build();
 
         articles = new ArrayList<>();
@@ -103,6 +112,11 @@ public class AppController {
 
     }
 
+    //**************************BUILDER************************************ Anfang
+
+
+//************************************ BUILDER ****************************** Ende
+
     /**
      * returns all articles that do contain "bitcoin"
      * in their title from newsapi
@@ -113,7 +127,17 @@ public class AppController {
         NewsApi api = new NewsApi.Builder()
                 .endpoint(Endpoint.EVERYTHING)
                 .q("bitcoin")
-                .language(Language.de)
+                .qInTitle("")
+                .sourceCountry(Country.at)
+                .sourceCategory(Category.business)
+                .domains("")
+                .excludeDomains("")
+                .from("")
+                .to("")
+                .language(Language.en)
+                .sortBy(SortBy.PUBLISHED)
+                .pageSize("")
+                .page("")
                 .build();
         articles = new ArrayList<>();
         try {
