@@ -24,13 +24,13 @@ public class ParallelDownloader extends Downloader{
 
       //  <>Future<>submit(Callable<> task);
 
-        List<Callable<Integer>> callables = new ArrayList<>();
-        for(int i = 0; i < 5; i++){ // create tasks dynamically
-            int idx = i;
+        List<Callable<String>> callables = new ArrayList<>();  //all the to be executed tasks
+        for(String url : urls){ // create tasks dynamically
+           // int idx = i;
             // pass the async function as a lambda
-            Callable<Integer> task = () -> doWork(idx);
-            // pool.submit returns Future objects -> add all Future objects to array
-            callables.add(task);
+            Callable<String> task = () -> saveUrl2File(url);
+            // returns callable (future???) objects -> adds all objects to array --- correct???
+            callables.add(task);          //alt:  futures.add(pool.submit(task)); // pool.submit returns Future objects -> add all Future objects to array
         }
         //Pass 10 tasks to the pool
       //  for(int i = 0; i < 10; i++){
