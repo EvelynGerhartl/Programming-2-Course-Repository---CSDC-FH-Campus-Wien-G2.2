@@ -37,7 +37,7 @@ public class NewsApi {
     //implement builder = creational pattern
 //************************************ B U I L D E R ****************************** ANFANG
 
-  /*  private NewsApi(Builder builder) { // builder is passed to constructor of News API
+    public NewsApi(Builder builder) { // builder is passed to constructor of News API
 
         this.endpoint = builder.endpoint;
         this.q = builder.q;
@@ -57,10 +57,10 @@ public class NewsApi {
 
     // nested class inside NewsApi
     public static class Builder {
-       *//* public static final String DELIMITER = "&";
+        public static final String DELIMITER = "&";
         private static final String URL = "https://newsapi.org/v2/%s?q=%s&apiKey=%s";
         private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
-        private OkHttpClient client;*//*
+        private OkHttpClient client;
 
         private Endpoint endpoint;
         private String q;
@@ -122,23 +122,28 @@ public class NewsApi {
             this.to = to;
             return this;
         }
-*/
-        /*NewsApi newsApi = new NewsApi.Builder()
+        public Builder language(Language language){
+            this.language = language;
+            return this;
+        }
+        public Builder sortBy (SortBy sortBy){
+            this.sortBy = sortBy;
+            return this;
+        }
+        public Builder pageSize (String pageSize){
+            this.pageSize = pageSize;
+            return this;
+        }
+        public Builder page (String page){
+            this.page = page;
+            return this;
 
-            .endpoint()
-            .q()
-            .qInTitle()
-            .sourceCountry()
-            .domains()
-            .excludeDomains()
-            .from()
-            .to()
-            .language()
-            .sortBy()
-            .pageSize()
-            .page()
-            .build();
-*/
+        }
+        public NewsApi build(){
+            return new NewsApi(this);
+        }
+    }
+
 //************************************ B U I L D E R ****************************** ENDE
 
     public String getQ() {
@@ -192,7 +197,7 @@ public class NewsApi {
     public Endpoint getEndpoint() {
         return endpoint;
     }
-
+/* C O N S T R U C T O R S  old
     public NewsApi(String q, Endpoint endpoint){
         this.client = new OkHttpClient();
         this.q = q;
@@ -220,7 +225,7 @@ public class NewsApi {
         this.pageSize = pageSize;
         this.page = page;
     }
-
+*/
     private String buildUrl(){
         String urlbase = String.format(URL, getEndpoint().getValue(), getQ(), API_KEY);
 

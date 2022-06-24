@@ -2,9 +2,7 @@ package at.ac.fhcampuswien.controllers;
 
 import at.ac.fhcampuswien.api.NewsApi;
 import at.ac.fhcampuswien.downloader.Downloader;
-import at.ac.fhcampuswien.enums.Category;
-import at.ac.fhcampuswien.enums.Country;
-import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.enums.*;
 import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import at.ac.fhcampuswien.models.Source;
@@ -84,44 +82,47 @@ public class AppController {
      * @return article list
      */
     public List<Article> getTopHeadlinesAustria() {
-        NewsApi api = new NewsApi("corona", Country.at, Endpoint.TOP_HEADLINES);
+        NewsApi api = new NewsApi.Builder()
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
             articles = response.getArticles();
-        } catch (NewsAPIException | IOException e){
+        } catch (NewsAPIException | IOException e) {
             System.out.println("An error occurred while fetching articles: " + e.getMessage());
         }
 
         return articles;
 
     }
+
     //**************************BUILDER************************************ Anfang
-    /*NewsApi api = new NewsApi.Builder()
+    NewsApi api = new NewsApi.Builder()
 
             .endpoint(Endpoint.TOP_HEADLINES)
             .q("a")
-            .qInTitle()
-            .sourceCountry()
-            .sourceCategory()
-            .domains()
-            .excludeDomains()
-            .from()
-            .to()
-            .language()
-            .sortBy()
-            .pageSize()
-            .page()
+            .qInTitle("")
+            .sourceCountry(Country.at)
+            .sourceCategory(Category.entertainment)
+            .domains("")
+            .excludeDomains("")
+            .from("")
+            .to("")
+            .language(Language.en)
+            .sortBy(SortBy.PUBLISHED)
+            .pageSize("")
+            .page("")
             .build();
-*/
+
 //************************************ BUILDER ****************************** Ende
+
     /**
      * returns all articles that do contain "bitcoin"
      * in their title from newsapi
+     *
      * @return filtered list
      */
     public List<Article> getAllNewsBitcoin() {
-        NewsApi api = new NewsApi("bitcoin", Endpoint.EVERYTHING);
+        NewsApi api = new NewsApi.Builder()
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
@@ -133,24 +134,24 @@ public class AppController {
         return articles;
     }
 
-//************************************ BUILDER ****************************** Ende
-/*        NewsApi newsApi = new NewsApi.Builder()
+    //************************************ BUILDER ****************************** Ende
+    NewsApi api = new NewsApi.Builder()
 
-                .endpoint(Endpoint.EVERYTHING)
-                .q("bitcoin")
-                .qInTitle()
-                .sourceCountry()
-                .sourceCategory()
-                .domains()
-                .excludeDomains()
-                .from()
-                .to()
-                .language()
-                .sortBy()
-                .pageSize()
-                .page()
+            .endpoint(Endpoint.EVERYTHING)
+            .q("a")
+            .qInTitle("")
+            .sourceCountry(Country.at)
+            .sourceCategory(Category.entertainment)
+            .domains("")
+            .excludeDomains("")
+            .from("")
+            .to("")
+            .language(Language.en)
+            .sortBy(SortBy.PUBLISHED)
+            .pageSize("")
+            .page("")
                 .build();
-        */
+
 //************************************ BUILDER ****************************** Ende
 
 
