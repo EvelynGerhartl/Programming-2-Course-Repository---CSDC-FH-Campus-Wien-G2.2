@@ -5,6 +5,7 @@ import at.ac.fhcampuswien.controllers.NewsAPIException;
 import at.ac.fhcampuswien.downloader.ParallelDownloader;
 import at.ac.fhcampuswien.downloader.SequentialDownloader;
 import at.ac.fhcampuswien.models.Article;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,24 +19,24 @@ public class Menu {
 
     }
 
-    public static Menu getInstance(){
-        if(instance == null)
+    public static Menu getInstance() {
+        if (instance == null)
             instance = new Menu();
         return instance;
     }
 
-    public void start(){
+    public void start() {
         String input;
         controller = controller.getInstance();
 
-        do{
+        do {
             printMenu();
             input = readLine();
             handleInput(input);
-        } while(!input.equals("q"));
+        } while (!input.equals("q"));
     }
 
-    private void handleInput(String input){
+    private void handleInput(String input) {
         switch (input) {
             case "a" -> getTopHeadlinesAustria(controller);
             case "b" -> getAllNewsBitcoin(controller);
@@ -52,17 +53,24 @@ public class Menu {
     }
 
     // Method is needed for exercise 4 - ignore for exercise 3 solution
-    private void downloadURLs(){
+    private void downloadURLs() {
         try {
             int resultSequential = controller.downloadURLs(new SequentialDownloader());
             // TODO print time in ms it took to download URLs sequentially
+
+            //determine start- and endpoint for equation in ms
+            long beginning = System.currentTimeMillis();
+            long ending = System.currentTimeMillis();
+            System.out.println(resultSequential + "articles downloaded in " + (ending - beginning) + " ms.");
 
             // TODO implement the process() function in ParallelDownloader class
             int resultParallel = controller.downloadURLs(new ParallelDownloader());
 
             // TODO print time in ms it took to download URLs parallel
 
-        } catch (NewsAPIException e){
+
+
+        } catch (NewsAPIException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -94,7 +102,7 @@ public class Menu {
     private void getArticlesShorterThan() {
         try {
             List<Article> articles = controller.getArticlesShorterThan(15);
-            if(articles.size() > 0){
+            if (articles.size() > 0) {
                 articles.forEach(System.out::println);
             } else {
                 System.out.println("No articles.");
@@ -120,7 +128,7 @@ public class Menu {
     private void getTopHeadlinesAustria(AppController controller) {
         List<Article> articleList = controller.getTopHeadlinesAustria();
 
-        for( Article a : articleList) {
+        for (Article a : articleList) {
             System.out.println(a);
         }
     }
@@ -129,15 +137,15 @@ public class Menu {
         System.out.println(controller.getAllNewsBitcoin());
     }
 
-    public static void printExitMessage(){
+    public static void printExitMessage() {
         System.out.println(EXIT_MESSAGE);
     }
 
-    public static void printInvalidInputMessage(){
+    public static void printInvalidInputMessage() {
         System.out.println(INVALID_INPUT_MESSAGE);
     }
 
-    private static void printMenu(){
+    private static void printMenu() {
         String text = """
                 *****************************
                 *   Welcome to NewsApp   *

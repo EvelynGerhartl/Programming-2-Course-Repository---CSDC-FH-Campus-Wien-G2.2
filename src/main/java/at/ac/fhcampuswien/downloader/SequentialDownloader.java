@@ -23,6 +23,7 @@ public class SequentialDownloader extends Downloader {
                 throw new NewsAPIException("Different problem occurred in " + this.getClass().getName() + ". Message: " + e.getMessage());
             }
         }
+
         return count;
     }
 }
