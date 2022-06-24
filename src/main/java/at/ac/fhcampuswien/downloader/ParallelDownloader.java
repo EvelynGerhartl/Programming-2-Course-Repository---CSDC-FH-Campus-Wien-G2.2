@@ -9,6 +9,8 @@ public class ParallelDownloader extends Downloader{
     @Override
     public int process(List<String> urls) {
         // TODO implement download function using multiple threads
+
+        int count = 0;
         // Hint: use ExecutorService with Callables
         return 0;
     }
