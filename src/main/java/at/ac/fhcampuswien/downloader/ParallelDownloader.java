@@ -11,7 +11,9 @@ public class ParallelDownloader extends Downloader{
         // TODO implement download function using multiple threads
         // Hint: use ExecutorService with Callables
 
-        int count = 0;
+      //
+        //
+        //  int count = 0;
 
         return 0;
     }
