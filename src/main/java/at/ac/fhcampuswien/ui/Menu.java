@@ -64,10 +64,15 @@ public class Menu {
             System.out.println(resultSequential + "articles downloaded in " + (ending - beginning) + " ms.");
 
             // TODO implement the process() function in ParallelDownloader class
-            int resultParallel = controller.downloadURLs(new ParallelDownloader());
+           // int resultParallel = controller.downloadURLs(new ParallelDownloader());
 
             // TODO print time in ms it took to download URLs parallel
 
+            int resultParallel = controller.downloadURLs(new ParallelDownloader());
+
+            beginning = System.currentTimeMillis();
+            ending = System.currentTimeMillis();
+            System.out.println(resultParallel + "articles downloaded parallely in " + (ending - beginning) + " ms.");
 
 
         } catch (NewsAPIException e) {
