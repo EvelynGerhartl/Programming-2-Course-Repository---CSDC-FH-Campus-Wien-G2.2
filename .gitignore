@@ -16,3 +16,6 @@ log/
 target/
 
 ../../../04_PROGR/prg2-exercise-3-solution/.env
+.env
+
+download/

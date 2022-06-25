@@ -27,7 +27,7 @@ public class Menu {
 
     public void start() {
         String input;
-        controller = controller.getInstance();
+        controller = AppController.getInstance();
 
         do {
             printMenu();
@@ -52,27 +52,31 @@ public class Menu {
         }
     }
 
-    // Method is needed for exercise 4 - ignore for exercise 3 solution
     private void downloadURLs() {
         try {
+            // current time stamp before Sequential Downloader and after, difference: how long it took
+            long timeBeforeSequential = System.currentTimeMillis();
             int resultSequential = controller.downloadURLs(new SequentialDownloader());
-            // TODO print time in ms it took to download URLs sequentially
+            long timeAfterSequential = System.currentTimeMillis();
+            long differenceSequential = timeAfterSequential - timeBeforeSequential;
+            long differenceSequentialSeconds = differenceSequential/1000;
 
-            //determine start- and endpoint for equation in ms
-            long beginning = System.currentTimeMillis();
-            long ending = System.currentTimeMillis();
-            System.out.println(resultSequential + "articles downloaded in " + (ending - beginning) + " ms.");
+
+            // TODO print time in ms it took to download URLs sequentially
+            System.out.println("The time it took to download " + resultSequential + " articles SEQUENTIALLY is: " + differenceSequential + " milliseconds. (which is around " + differenceSequentialSeconds + " seconds)");
+
 
             // TODO implement the process() function in ParallelDownloader class
-           // int resultParallel = controller.downloadURLs(new ParallelDownloader());
+            long timeBeforeParallel = System.currentTimeMillis();
+            int resultParallel = controller.downloadURLs(new ParallelDownloader());
+            long timeAfterParallel = System.currentTimeMillis();
+            long differenceParallel = timeAfterParallel - timeBeforeParallel;
+            long differenceParallelSeconds = differenceParallel/1000;
+
+
 
             // TODO print time in ms it took to download URLs parallel
-
-            int resultParallel = controller.downloadURLs(new ParallelDownloader());
-
-            beginning = System.currentTimeMillis();
-            ending = System.currentTimeMillis();
-            System.out.println(resultParallel + "articles downloaded parallely in " + (ending - beginning) + " ms.");
+            System.out.println("The time it took to download " + resultParallel + " articles PARALLELLY is: " + differenceParallel + " milliseconds. (which is around " + differenceParallelSeconds + " seconds)");
 
 
         } catch (NewsAPIException e) {

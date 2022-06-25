@@ -86,7 +86,6 @@ public class AppController {
                 .endpoint(Endpoint.TOP_HEADLINES)
                 .q("a")
                 .sourceCountry(Country.at)
-                .sourceCategory(Category.entertainment)
                 .language(Language.de)
                 .build();
 
