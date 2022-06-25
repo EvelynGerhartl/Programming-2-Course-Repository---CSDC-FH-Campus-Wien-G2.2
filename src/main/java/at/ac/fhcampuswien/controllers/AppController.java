@@ -6,7 +6,6 @@ import at.ac.fhcampuswien.enums.*;
 import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import at.ac.fhcampuswien.models.Source;
-import okhttp3.OkHttpClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,20 +83,11 @@ public class AppController {
      */
     public List<Article> getTopHeadlinesAustria() {
         NewsApi api = new NewsApi.Builder()
-               // .client(new OkHttpClient()) to be fixed
                 .endpoint(Endpoint.TOP_HEADLINES)
                 .q("a")
-                .qInTitle("")
                 .sourceCountry(Country.at)
                 .sourceCategory(Category.entertainment)
-                .domains("")
-                .excludeDomains("")
-                .from("")
-                .to("")
-                .language(Language.en)
-                .sortBy(SortBy.PUBLISHED)
-                .pageSize("")
-                .page("")
+                .language(Language.de)
                 .build();
 
         articles = new ArrayList<>();
@@ -112,11 +102,6 @@ public class AppController {
 
     }
 
-    //**************************BUILDER************************************ Anfang
-
-
-//************************************ BUILDER ****************************** Ende
-
     /**
      * returns all articles that do contain "bitcoin"
      * in their title from newsapi
@@ -127,17 +112,7 @@ public class AppController {
         NewsApi api = new NewsApi.Builder()
                 .endpoint(Endpoint.EVERYTHING)
                 .q("bitcoin")
-                .qInTitle("")
-                .sourceCountry(Country.at)
-                .sourceCategory(Category.business)
-                .domains("")
-                .excludeDomains("")
-                .from("")
-                .to("")
-                .language(Language.en)
-                .sortBy(SortBy.PUBLISHED)
-                .pageSize("")
-                .page("")
+                .language(Language.de)
                 .build();
         articles = new ArrayList<>();
         try {
@@ -182,9 +157,9 @@ public class AppController {
         if(articles == null)
             throw new NewsAPIException("Load data first");
 
-       return articles.stream()
-               .filter(e -> e.getSource().getName().equals("New York Times"))
-               .count();
+        return articles.stream()
+                .filter(e -> e.getSource().getName().equals("New York Times"))
+                .count();
     }
 
     public List<Article> getArticlesShorterThan(int length) throws NewsAPIException{
