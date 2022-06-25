@@ -15,12 +15,12 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AppController {
-    private static AppController instance;
+    private static AppController instance;      //private static field for instance
     private List<Article> articles;
 
-    private AppController() {}
+    private AppController() {}                  //private constructor
 
-    public static AppController getInstance(){
+    public static AppController getInstance(){  //public static creation method (to get the instance instead of using direct calls)
         if(instance == null)
             instance = new AppController();
         return instance;
@@ -50,18 +50,17 @@ public class AppController {
         this.articles = articles;
     }
 
-    // Method is needed for exercise 4 - ignore for exercise 3 solution
     // returns number of downloaded article urls
     public int downloadURLs(Downloader downloader) throws NewsAPIException{
-        if( articles == null)
+        if(articles == null) {
             throw new NewsAPIException();
+        }
 
-        List<String> urls = new ArrayList<>();
-
-        // TODO extract urls from articles with java stream
-        urls = articles.stream()
+        List<String> urls = articles.stream()
                 .map(Article::getUrl)
                 .collect(Collectors.toList());
+
+        // TODO extract urls from articles with java stream >>> DONE!
 
         return downloader.process(urls);
     }
@@ -82,6 +81,7 @@ public class AppController {
      * @return article list
      */
     public List<Article> getTopHeadlinesAustria() {
+        //object creation with Builder Design Patter
         NewsApi api = new NewsApi.Builder()
                 .endpoint(Endpoint.TOP_HEADLINES)
                 .q("a")
@@ -108,11 +108,13 @@ public class AppController {
      * @return filtered list
      */
     public List<Article> getAllNewsBitcoin() {
+        //object creation with Builder Design Patter
         NewsApi api = new NewsApi.Builder()
                 .endpoint(Endpoint.EVERYTHING)
                 .q("bitcoin")
                 .language(Language.de)
                 .build();
+
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();

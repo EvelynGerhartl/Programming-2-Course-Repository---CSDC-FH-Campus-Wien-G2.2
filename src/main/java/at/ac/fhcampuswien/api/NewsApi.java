@@ -2,7 +2,6 @@ package at.ac.fhcampuswien.api;
 
 import at.ac.fhcampuswien.controllers.NewsAPIException;
 import at.ac.fhcampuswien.enums.*;
-import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -10,14 +9,13 @@ import io.github.cdimascio.dotenv.Dotenv;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
 import java.io.IOException;
 import java.util.Objects;
 
 public class NewsApi {
     public static final String DELIMITER = "&";
     private static final String URL = "https://newsapi.org/v2/%s?q=%s&apiKey=%s";
-    private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
+    private static final String API_KEY = Dotenv.load().get("API_TOKEN");
     private OkHttpClient client = new OkHttpClient();
     private final Endpoint endpoint;
     private final String q;
@@ -49,14 +47,13 @@ public class NewsApi {
         this.sortBy = builder.sortBy;
         this.pageSize = builder.pageSize;
         this.page = builder.page;
-
     }
 
     // nested class inside NewsApi
     public static class Builder {
         public static final String DELIMITER = "&";
         private static final String URL = "https://newsapi.org/v2/%s?q=%s&apiKey=%s";
-        private static final String API_KEY = Dotenv.load().get("API_TOKEN");   // read token from .env file -> add .env to .gitignore!!!
+        private static final String API_KEY = Dotenv.load().get("API_TOKEN");
 
         private Endpoint endpoint;
         private String q;
@@ -73,8 +70,8 @@ public class NewsApi {
         private String page;
 
 
-        //each function returns itself..
 
+        //each function returns the Builder itself
         public Builder endpoint(Endpoint endpoint) {
             this.endpoint = endpoint;
             return this;
@@ -119,31 +116,34 @@ public class NewsApi {
             this.to = to;
             return this;
         }
-        public Builder language(Language language){
+
+        public Builder language(Language language) {
             this.language = language;
             return this;
         }
-        public Builder sortBy (SortBy sortBy){
+
+        public Builder sortBy(SortBy sortBy) {
             this.sortBy = sortBy;
             return this;
         }
-        public Builder pageSize (String pageSize){
+
+        public Builder pageSize(String pageSize) {
             this.pageSize = pageSize;
             return this;
         }
-        public Builder page (String page){
+
+        public Builder page(String page) {
             this.page = page;
             return this;
-
         }
-        public NewsApi build(){
+
+        public NewsApi build() { //returns new object
             return new NewsApi(this);
         }
 
 
     }
 
-//************************************ B U I L D E R ****************************** ENDE
 
     public String getQ() {
         return q;
@@ -196,6 +196,7 @@ public class NewsApi {
     public Endpoint getEndpoint() {
         return endpoint;
     }
+
     /* C O N S T R U C T O R S  old
         public NewsApi(String q, Endpoint endpoint){
             this.client = new OkHttpClient();
@@ -225,42 +226,42 @@ public class NewsApi {
             this.page = page;
         }
     */
-    private String buildUrl(){
+    private String buildUrl() {
         String urlbase = String.format(URL, getEndpoint().getValue(), getQ(), API_KEY);
 
         StringBuilder sb = new StringBuilder(urlbase);
 
-        if(getFrom() != null){
+        if (getFrom() != null) {
             sb.append(DELIMITER).append("from=").append(getFrom());
         }
-        if(getTo() != null){
+        if (getTo() != null) {
             sb.append(DELIMITER).append("to=").append(getTo());
         }
-        if(getPage() != null){
+        if (getPage() != null) {
             sb.append(DELIMITER).append("page=").append(getPage());
         }
-        if(getPageSize() != null){
+        if (getPageSize() != null) {
             sb.append(DELIMITER).append("pageSize=").append(getPageSize());
         }
-        if(getLanguage() != null){
+        if (getLanguage() != null) {
             sb.append(DELIMITER).append("language=").append(getLanguage());
         }
-        if(getSourceCountry() != null){
+        if (getSourceCountry() != null) {
             sb.append(DELIMITER).append("country=").append(getSourceCountry());
         }
-        if(getSourceCategory() != null){
+        if (getSourceCategory() != null) {
             sb.append(DELIMITER).append("category=").append(getSourceCategory());
         }
-        if(getDomains() != null){
+        if (getDomains() != null) {
             sb.append(DELIMITER).append("domains=").append(getDomains());
         }
-        if(getExcludeDomains() != null){
+        if (getExcludeDomains() != null) {
             sb.append(DELIMITER).append("excludeDomains=").append(getExcludeDomains());
         }
-        if(getqInTitle() != null){
+        if (getqInTitle() != null) {
             sb.append(DELIMITER).append("qInTitle=").append(getqInTitle());
         }
-        if(getSortBy() != null){
+        if (getSortBy() != null) {
             sb.append(DELIMITER).append("sortBy=").append(getSortBy());
         }
         return sb.toString();

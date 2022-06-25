@@ -13,13 +13,11 @@ public class Menu {
     private static final String INVALID_INPUT_MESSAGE = "No valid input. Try again";
     private static final String EXIT_MESSAGE = "Bye bye!";
     private AppController controller;
-    private static Menu instance;
+    private static Menu instance;           // Singleton (private static for storing instance)
 
-    private Menu() {
+    private Menu() {}                       //private class constructor
 
-    }
-
-    public static Menu getInstance() {
+    public static Menu getInstance() {      //public static creation method (to get the instance instead of using direct calls)
         if (instance == null)
             instance = new Menu();
         return instance;
@@ -27,7 +25,7 @@ public class Menu {
 
     public void start() {
         String input;
-        controller = AppController.getInstance();
+        controller = AppController.getInstance();       //"new" keyword cannot be used (private constructor), class can only have 1 single instance
 
         do {
             printMenu();
@@ -62,11 +60,11 @@ public class Menu {
             long differenceSequentialSeconds = differenceSequential/1000;
 
 
-            // TODO print time in ms it took to download URLs sequentially
+            // TODO print time in ms it took to download URLs sequentially >>> DONE!
             System.out.println("The time it took to download " + resultSequential + " articles SEQUENTIALLY is: " + differenceSequential + " milliseconds. (which is around " + differenceSequentialSeconds + " seconds)");
 
 
-            // TODO implement the process() function in ParallelDownloader class
+            // TODO implement the process() function in ParallelDownloader class >>> DONE!
             long timeBeforeParallel = System.currentTimeMillis();
             int resultParallel = controller.downloadURLs(new ParallelDownloader());
             long timeAfterParallel = System.currentTimeMillis();
@@ -75,7 +73,7 @@ public class Menu {
 
 
 
-            // TODO print time in ms it took to download URLs parallel
+            // TODO print time in ms it took to download URLs parallel >>> DONE!
             System.out.println("The time it took to download " + resultParallel + " articles PARALLELLY is: " + differenceParallel + " milliseconds. (which is around " + differenceParallelSeconds + " seconds)");
 
 
