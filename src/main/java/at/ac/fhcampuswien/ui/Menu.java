@@ -15,7 +15,8 @@ public class Menu {
     private AppController controller;
     private static Menu instance;           // Singleton (private static for storing instance)
 
-    private Menu() {}                       //private class constructor
+    private Menu() {
+    }                       //private class constructor
 
     public static Menu getInstance() {      //public static creation method (to get the instance instead of using direct calls)
         if (instance == null)
@@ -57,7 +58,7 @@ public class Menu {
             int resultSequential = controller.downloadURLs(new SequentialDownloader());
             long timeAfterSequential = System.currentTimeMillis();
             long differenceSequential = timeAfterSequential - timeBeforeSequential;
-            long differenceSequentialSeconds = differenceSequential/1000;
+            long differenceSequentialSeconds = differenceSequential / 1000;
 
 
             // TODO print time in ms it took to download URLs sequentially >>> DONE!
@@ -69,8 +70,7 @@ public class Menu {
             int resultParallel = controller.downloadURLs(new ParallelDownloader());
             long timeAfterParallel = System.currentTimeMillis();
             long differenceParallel = timeAfterParallel - timeBeforeParallel;
-            long differenceParallelSeconds = differenceParallel/1000;
-
+            long differenceParallelSeconds = differenceParallel / 1000;
 
 
             // TODO print time in ms it took to download URLs parallel >>> DONE!

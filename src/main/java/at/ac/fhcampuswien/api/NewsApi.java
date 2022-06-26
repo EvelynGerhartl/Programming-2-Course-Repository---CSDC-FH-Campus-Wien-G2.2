@@ -9,6 +9,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -68,7 +69,6 @@ public class NewsApi {
         private SortBy sortBy;
         private String pageSize;
         private String page;
-
 
 
         //each function returns the Builder itself

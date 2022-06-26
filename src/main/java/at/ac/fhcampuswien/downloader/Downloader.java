@@ -38,15 +38,15 @@ public abstract class Downloader {
             while ((length = is.read(b)) != -1) {   // read byte for byte and write it to file
                 os.write(b, 0, length);
             }
-        } catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             throw new NewsAPIException("Cannot convert " + urlString + " to URL. Error message: " + e.getMessage());
         } catch (IOException e) {
             throw new NewsAPIException("Either failed to open URL: " + urlString + " or failed to write to Folder. Error message: " + e.getMessage());
         } finally {
             try {
-                if(is != null)
+                if (is != null)
                     is.close();
-                if(os != null)
+                if (os != null)
                     os.close();
             } catch (IOException | NullPointerException e) {
                 e.printStackTrace();

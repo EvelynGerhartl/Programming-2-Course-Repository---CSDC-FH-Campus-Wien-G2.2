@@ -8,17 +8,17 @@ public class SequentialDownloader extends Downloader {
 
     // returns number of downloaded article urls
     @Override
-    public int process(List<String> urls) throws NewsAPIException{
+    public int process(List<String> urls) throws NewsAPIException {
         int count = 0;
         for (String url : urls) {
             try {
                 String fileName = saveUrl2File(url);
-                if(fileName != null)
+                if (fileName != null)
                     count++;
-            } catch (NewsAPIException e){
+            } catch (NewsAPIException e) {
                 System.err.println(e.getMessage());
                 throw new NewsAPIException(e.getMessage());
-            } catch (Exception e){
+            } catch (Exception e) {
                 throw new NewsAPIException("Different problem occurred in " + this.getClass().getName() + ". Message: " + e.getMessage());
             }
         }

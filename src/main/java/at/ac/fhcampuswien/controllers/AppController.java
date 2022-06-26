@@ -15,62 +15,66 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class AppController {
-    private static AppController instance;      //private static field for instance
+    private static AppController instance;
     private List<Article> articles;
 
-    private AppController() {}                  //private constructor
+    private AppController() {
+    }
 
-    public static AppController getInstance(){  //public static creation method (to get the instance instead of using direct calls)
-        if(instance == null)
+    public static AppController getInstance() {
+        if (instance == null)
             instance = new AppController();
         return instance;
     }
 
     /**
      * filters a given article list based on a query
-     * @param query to filter by
-     * @param articles  list to filter
+     *
+     * @param query    to filter by
+     * @param articles list to filter
      * @return filtered list
      */
-    private static List<Article> filterList(String query, List<Article> articles){
+    private static List<Article> filterList(String query, List<Article> articles) {
         List<Article> filtered = new ArrayList<>();
-        for(Article i : articles){
-            if(i.getTitle().toLowerCase().contains(query)){
+        for (Article i : articles) {
+            if (i.getTitle().toLowerCase().contains(query)) {
                 filtered.add(i);
             }
         }
         return filtered;
     }
 
-    public List<Article> getArticles(){
+    public List<Article> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<Article> articles){
+    public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
 
+    // Method is needed for exercise 4 - ignore for exercise 3 solution
     // returns number of downloaded article urls
-    public int downloadURLs(Downloader downloader) throws NewsAPIException{
-        if(articles == null) {
+    public int downloadURLs(Downloader downloader) throws NewsAPIException {
+        if (articles == null)
             throw new NewsAPIException();
-        }
 
-        List<String> urls = articles.stream()
+        List<String> urls = new ArrayList<>();
+
+        // TODO extract urls from articles with java stream
+        urls = articles.stream()
                 .map(Article::getUrl)
                 .collect(Collectors.toList());
-
-        // TODO extract urls from articles with java stream >>> DONE!
 
         return downloader.process(urls);
     }
 
     /**
      * gets the size of last fetched articles
+     *
      * @return size of article list
      */
-    public int getArticleCount(){
-        if(articles != null) {
+    public int getArticleCount() {
+        if (articles != null) {
             return articles.size();
         }
         return 0;
@@ -78,10 +82,10 @@ public class AppController {
 
     /**
      * get the top headlines from austria via newsapi
+     *
      * @return article list
      */
     public List<Article> getTopHeadlinesAustria() {
-        //object creation with Builder Design Patter
         NewsApi api = new NewsApi.Builder()
                 .endpoint(Endpoint.TOP_HEADLINES)
                 .q("a")
@@ -108,18 +112,16 @@ public class AppController {
      * @return filtered list
      */
     public List<Article> getAllNewsBitcoin() {
-        //object creation with Builder Design Patter
         NewsApi api = new NewsApi.Builder()
                 .endpoint(Endpoint.EVERYTHING)
                 .q("bitcoin")
                 .language(Language.de)
                 .build();
-
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
             articles = response.getArticles();
-        } catch (NewsAPIException | IOException e){
+        } catch (NewsAPIException | IOException e) {
             System.out.println("An error occurred while fetching articles: " + e.getMessage());
         }
 
@@ -127,10 +129,8 @@ public class AppController {
     }
 
 
-
-
     public String getProviderWithMostArticles() throws NewsAPIException {
-        if(articles == null)
+        if (articles == null)
             throw new NewsAPIException("Load data first");
 
         return articles.stream()
@@ -144,7 +144,7 @@ public class AppController {
     }
 
     public String getLongestNameOfAuthors() throws NewsAPIException {
-        if(articles == null)
+        if (articles == null)
             throw new NewsAPIException("Load data first");
 
         return articles.stream()
@@ -154,8 +154,8 @@ public class AppController {
                 .orElseThrow(() -> new NewsAPIException("problem with analysing data in getLongestNameOfAuthors"));
     }
 
-    public long getCountArticlesNYTimes() throws NewsAPIException{
-        if(articles == null)
+    public long getCountArticlesNYTimes() throws NewsAPIException {
+        if (articles == null)
             throw new NewsAPIException("Load data first");
 
         return articles.stream()
@@ -163,8 +163,8 @@ public class AppController {
                 .count();
     }
 
-    public List<Article> getArticlesShorterThan(int length) throws NewsAPIException{
-        if(articles == null)
+    public List<Article> getArticlesShorterThan(int length) throws NewsAPIException {
+        if (articles == null)
             throw new NewsAPIException("Load data first");
 
         return articles.stream()
@@ -172,8 +172,8 @@ public class AppController {
                 .collect(Collectors.toList());
     }
 
-    public List<Article> sortArticlesByContentLength() throws NewsAPIException{
-        if(articles == null)
+    public List<Article> sortArticlesByContentLength() throws NewsAPIException {
+        if (articles == null)
             throw new NewsAPIException("Load data first");
 
         return articles.stream()
@@ -181,20 +181,5 @@ public class AppController {
                 .sorted(Comparator.comparingInt(a -> a.getDescription().length()))
                 .collect(Collectors.toList());
 
-        /* long form
-        return articles.stream()
-                .sorted( (a1, a2) -> {
-                    if(a1.getDescription().length() == a2.getDescription().length()){
-                        return a1.getDescription().compareTo(a2.getDescription());
-                    } else if (a1.getDescription().length() > a2.getDescription().length()) {
-                        return 1;
-                    } else {
-                        return -1;
-                    }
-                })
-                .collect(Collectors.toList());
-        */
     }
-
-
 }

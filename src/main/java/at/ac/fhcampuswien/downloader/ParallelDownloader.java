@@ -23,18 +23,18 @@ public class ParallelDownloader extends Downloader {
         List<Callable<String>> callables = new ArrayList<>();  //all the to be executed tasks
         //* Callable: represents a task that can be executed in different threads and returns a generic value
         for (String url : urls) { // create tasks dynamically *(for each url from list of urls)
-            // pass the async (????) function as a lambda
+            // pass the async function as a lambda
             Callable<String> task = () -> saveUrl2File(url);
-            // returns callable (future???) objects -> adds all objects to array --- correct???
-            callables.add(task);          //alt:  futures.add(pool.submit(task)); // pool.submit returns Future objects -> add all Future objects to array
+            // pool.submit returns Future objects -> add all Future objects to array
+            callables.add(task);
         }
 
         int count = 0;
 
         try {
-            List<Future<String>> futures = threadPool.invokeAll(callables);
+            List<Future<String>> futures = threadPool.invokeAll(callables); //placeholder for value that will arrive in the future
             for (Future<String> result : futures) {
-                if (result.get() != null) {
+                if (result.get() != null) {   //gets actual result
                     count++;    //* when downloaded successfully for print & comparison in menu
                 }
             }
