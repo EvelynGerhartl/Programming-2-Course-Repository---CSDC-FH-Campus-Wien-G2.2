@@ -1,5 +1,3 @@
-## PRG2 Exercise 3 Solution
+## Exercise 4
 
-### Setup
-To start the application you must add a .env file in root directory and add a variable API_TOKEN=<YOUR_API_KEY>.
-Eg. API_TOKEN=abcde12345
+by group 2.2
